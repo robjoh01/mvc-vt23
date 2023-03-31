@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+{% block title %}About{% endblock %}
+
+{% block body %}
+    <h2>About</h2>
+    <figure>
+        <a class="img-link" href="{{ asset('img/pexels-junior-teixeira-2047905.jpg') }}">
+            <img class="img"
+                src="{{ asset('img/pexels-junior-teixeira-2047905.jpg') }}"
+                width="3648"
+                height="5472"
+                style="width: 365px; height: 365px; object-fit: fill;"
+                alt="Semi-opened Laptop Computer Turned-on on Table"
+            />
+            <figcaption>
+                <a href="https://github.com/robjoh01/mvc-vt23" target="_blank">Länk till github repo</a>
+            </figcaption>
+        </a>
+    </figure>
+{% endblock %}
+
+{# Berättar om kursen mvc och dess syfte. Länka till kursens Git-repo. Lägg till en representativ bild. Skapa ytterligare en länk som leder till ditt egna GitHub-repo. Sidan skall ha två kolumner. #}
