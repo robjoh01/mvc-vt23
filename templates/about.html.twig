@@ -3,21 +3,35 @@
 {% block title %}About{% endblock %}
 
 {% block body %}
-    <h2>About</h2>
-    <figure>
-        <a class="img-link" href="{{ asset('img/pexels-junior-teixeira-2047905.jpg') }}">
-            <img class="img"
-                src="{{ asset('img/pexels-junior-teixeira-2047905.jpg') }}"
-                width="3648"
-                height="5472"
-                style="width: 365px; height: 365px; object-fit: fill;"
-                alt="Semi-opened Laptop Computer Turned-on on Table"
-            />
-            <figcaption>
-                <a href="https://github.com/robjoh01/mvc-vt23" target="_blank">Länk till github repo</a>
-            </figcaption>
-        </a>
-    </figure>
+    <div class="two-col-layout right">
+        <main class="main">
+            <article class="article">
+                <h2>Om kursen och webbplatsen</h2>
+                <p>Kursen heter <b>mvc</b> och undervisas av <em>Mikael Roos</em>. Kursen handlar om PHP och hur man använder PHP objektorienterade programmeringstekniker.</p>
+                <figure>
+                    <a class="img-link" href="{{ asset('img/pexels-junior-teixeira-2047905.jpg') }}">
+                        <img class="img"
+                            src="{{ asset('img/pexels-junior-teixeira-2047905.jpg') }}"
+                            width="3648"
+                            height="5472"
+                            style="width: 365px; height: 365px; object-fit: fill;"
+                            alt="Semi-opened Laptop Computer Turned-on on Table"
+                        />
+                        <figcaption>
+                            <a href="https://github.com/robjoh01/mvc-vt23" target="_blank">Länk till github repo</a>
+                        </figcaption>
+                    </a>
+                </figure>
+            </article>
+        </main>
+
+        <aside class="aside">
+            <h4>Kursen <i>mvc</i></h4>
+            <p>Kursen Objektorienterade webbteknologier, a.k.a. mvc, fokuserar på objektorienterade programmeringstekniker i programmeringsspråket PHP.</p> <p>Klassiska objektorienterade konstruktioner hanteras tillsammans med objektorienterad programmering i webbaserat ramverk tillsammans med databaser samt enhetstestning.</p>
+            <h4>Kursrepo</h4>
+            <p>Kursen har ett <a href="https://github.com/dbwebb-se/mvc">kursrepo på GitHub</a> med exempelprogram och issues där man kan ställa frågor och få utförliga svar.</p>
+        </aside>
+    </div>
 {% endblock %}
 
 {# Berättar om kursen mvc och dess syfte. Länka till kursens Git-repo. Lägg till en representativ bild. Skapa ytterligare en länk som leder till ditt egna GitHub-repo. Sidan skall ha två kolumner. #}
