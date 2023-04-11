@@ -2,13 +2,15 @@
 
 {% block title %}Lucky Number{% endblock %}
 
-{% block body %}
-    <h1>Your lucky number is {{ number }}</h1>
+{% block content %}
+    <main class="main">
+        <h1>Your lucky number is {{ number }}</h1>
 
-    {% if is_lucky %}
-        <iframe src="https://giphy.com/embed/vMl66bhyFu5i77m187" width="456" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/stickers/luck-clover-trevo-vMl66bhyFu5i77m187">via GIPHY</a></p>
-        <div class="rainbow-wrapper"></div>
-    {% else %}
-        <iframe src="https://giphy.com/embed/qBVEww0YjwWyI" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/league-of-legends-esports-caster-jun-qBVEww0YjwWyI">via GIPHY</a></p>
-    {% endif %}
+        {% if is_lucky %}
+            <iframe src="https://giphy.com/embed/vMl66bhyFu5i77m187" width="456" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/stickers/luck-clover-trevo-vMl66bhyFu5i77m187">via GIPHY</a></p>
+            <div class="rainbow-wrapper"></div>
+        {% else %}
+            <iframe src="https://giphy.com/embed/qBVEww0YjwWyI" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/league-of-legends-esports-caster-jun-qBVEww0YjwWyI">via GIPHY</a></p>
+        {% endif %}
+    </main>
 {% endblock %}

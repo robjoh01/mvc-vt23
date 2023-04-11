@@ -34,6 +34,11 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ path('card') }}">
+                        <span class="un">Card Game</span>
+                    </a>
+                </li>
+                <li>
                     <a href="{{ path('about') }}">
                         <span class="un">About</span>
                     </a>
@@ -49,11 +54,10 @@
         </div>
     </header>
     <body>
+        {{ include('flash.html.twig') }}
         <div class="page-container">
         <div class="content-wrap">
-            <main class="main">
-                {% block body %}{% endblock %}
-            </main>
+            {% block content %}{% endblock %}
         </div>
         <footer>
             {% block footer %}

@@ -2,17 +2,18 @@
 
 {% block title %}Home{% endblock %}
 
-{% block body %}
-    <h2>Home</h2>
-    <figure>
-        <img class="img"
-            src="{{ asset('img/studenten.png') }}"
-            alt="Studenten 2020"
-        />
-        <figcaption>
-            <span class="un">Robin Johannesson, Student 2020</span>
-        </figcaption>
-    </figure>
+{% block content %}
+    <main class="main">
+            <h2>Home</h2>
+            <figure>
+                <img class="img"
+                    src="{{ asset('img/studenten.png') }}"
+                    alt="Studenten 2020"
+                />
+                <figcaption>
+                    <span class="un">Robin Johannesson, Student 2020</span>
+                </figcaption>
+            </figure>
 <pre>
 Hejsan, jag heter Robin Johannesson och är född 22 Augusti 2001. Jag är uppvuxen i Kristianstad, Skåne. Jag gillar då att programmera, oftast inom spel-programmering.
 
@@ -27,6 +28,7 @@ Spel-projektet heter "Apex Point". <a href="#" target="_blank">Länk till deras 
 
 Spelet utspelas sig i Japan och består av JDM kulturen. JDM står för Japanese domestic market. Poängen med spelet är att racea runt med sin street bil tillsammans med sina vänner. Spelet har också realistisk bil-fysikmotor som simulera näst intill verkliga livet.
 </pre>
+    </main>
 {% endblock %}
 
 {# Presentation av dig själv inklusive en bild. Det är okey att vara anonym och hitta på en figur att presentera. #}

@@ -1,0 +1,84 @@
+// @import '../../../node_modules/normalize.css/normalize.css';
+@import 'variables';
+@import 'typography';
+@import 'two-col-layout';
+@import 'blockquotes';
+@import 'figure';
+@import 'code';
+@import 'rainbow-effect';
+@import 'underline-effect';
+@import 'header';
+@import 'navbar';
+@import 'table-of-contents';
+@import 'flash';
+@import 'dice';
+@import 'card';
+@import 'footer';
+@import 'responsive';
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0 auto;
+    background-color: hsl(0, 0%, 93%);
+}
+
+main {
+    padding: 1rem 2rem;
+    margin: 0 auto;
+    max-width: 800px;
+    line-height: 1.4;
+    font-size: 1.2rem;
+}
+
+h1 {
+    border-bottom: 4px double #ccc;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+pre {
+    white-space: pre-wrap;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+img {
+    max-width: 100%;
+}
+
+figcaption {
+    color: hsl(0, 0%, 11%);
+}
+
+figcaption:hover {
+    color: hsl(0, 0%, 5%);
+}
+
+input {
+    font-size: 1em;
+}
+
+.img {
+    border-radius: 8px;
+    margin: 1rem;
+}
+
+.img-link {
+    text-decoration: none;
+}
+
+.page-container {
+    position: relative;
+}
+
+.content-wrap {
+    padding-bottom: 2.5rem;    /* Footer height */
+    min-height: 100vh;
+}

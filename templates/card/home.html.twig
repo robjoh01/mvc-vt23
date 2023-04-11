@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Card Game{% endblock %}
+
+{% block content %}
+<main class="main">
+    <h1>Card game</h1>
+
+    <p>You can read more on the <a href="https://en.wikipedia.org/wiki/Card_game" target="_blank"> 
+    basics of the game on Wikipedia</a>.</p>
+
+    <p>
+        <a href="{{ path('card_deck') }}">Show a deck</a>
+    </p>
+    <p>
+        <a href="{{ path('card_deck_shuffle') }}">Shuffle a deck of cards</a>
+    </p>
+    <p>
+        <a href="{{ path('card_draw') }}">Draw a card</a>
+    </p>
+</main>
+{% endblock %}

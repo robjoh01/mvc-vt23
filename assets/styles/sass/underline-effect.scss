@@ -1,0 +1,15 @@
+.un {
+    display: inline;
+    background-image: linear-gradient(hsl(225, 100%, 65%), hsl(274, 100%, 59%));
+    /*                   ↓ height of underline  */
+    background-size: 0% 2px;
+    /*                        ↓ y position of underline. you can change as 50% to see it. */
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    transition: background 450ms cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0.8;
+}
+
+.un:hover {
+    background-size: 100% 2px;
+}

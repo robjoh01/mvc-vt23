@@ -1,0 +1,16 @@
+.toc {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.toc li a {
+    font-family: 'Lexend', sans-serif;
+    color: hsl(0, 0%, 11%);
+    text-decoration: none;
+    transition: all 250ms ease-in-out;
+}
+
+.toc li a:hover {
+    color: hsl(0, 0%, 5%);
+}

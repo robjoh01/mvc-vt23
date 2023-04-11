@@ -1,0 +1,25 @@
+.nav {
+    width: 100%;
+    list-style: none;
+}
+
+.nav li {
+    display: inline-block;
+    padding: 0 16px;
+}
+
+.nav li a,
+figcaption {
+    font-family: 'Lexend', sans-serif;
+    font-size: 1rem;
+    color: #ccc;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 250ms ease-in-out;
+}
+
+.nav li a:hover,
+figcaption:hover {
+    color: #eee;
+}

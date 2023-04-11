@@ -7,6 +7,7 @@
         "@symfony/webpack-encore": "^4.0.0",
         "core-js": "^3.23.0",
         "regenerator-runtime": "^0.13.9",
+        "sass": "^1.61.0",
         "webpack": "^5.74.0",
         "webpack-cli": "^4.10.0",
         "webpack-notifier": "^1.15.0"
@@ -17,6 +18,11 @@
         "dev-server": "encore dev-server",
         "dev": "encore dev",
         "watch": "encore dev --watch",
-        "build": "encore production --progress"
+        "build": "encore production --progress",
+        "style": "sass assets/styles/sass/core.scss assets/styles/app.css --no-source-map",
+        "style-min": "sass assets/styles/sass/core.scss assets/styles/app.css --no-source-map --style compressed"
+    },
+    "dependencies": {
+        "normalize.css": "^8.0.1"
     }
 }

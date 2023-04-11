@@ -1,0 +1,58 @@
+/* For wide desktop: */
+@media all and (min-width: 1024px) {
+    .header {
+        font-size: 2rem;
+    }
+
+    .header .nav {
+        font-size: 1.4rem;
+    }
+
+    .header-logo p {
+        white-space: nowrap;
+    }
+}
+
+/* For desktop: */
+@media all and (min-width: 900px) and (max-width: 1024px) {
+    .header {
+        font-size: 1.4rem;
+    }
+
+    .header .nav {
+        font-size: 1rem;
+    }
+
+    .header-logo p {
+        white-space: nowrap;
+    }
+}
+
+@media all and (min-width: 768px) and (max-width: 900px) {
+    .header {
+        font-size: 1rem;
+    }
+
+    .header .nav {
+        font-size: 1rem;
+    }
+
+    .header-logo p {
+        display: block;
+        white-space: pre-wrap;
+    }
+}
+
+/* For tablets: */
+@media all and (min-width: 480px) and (max-width: 768px) {
+    .header-logo p {
+        display: none;
+    }
+}
+
+/* For mobile phones: */
+@media all and (max-width: 480px) {
+    .header-logo p {
+        display: none;
+    }
+}

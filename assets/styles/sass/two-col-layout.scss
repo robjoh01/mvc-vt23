@@ -1,0 +1,56 @@
+.two-col-layout {
+    display: flex;
+    justify-content: space-between;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.two-col-layout.left {
+    flex-direction: row-reverse;
+}
+
+.two-col-layout.right {
+    flex-direction: row;
+}
+
+.two-col-layout > .main {
+    width: calc(100% / 16 * 12); /* 12/16 width */
+}
+
+.two-col-layout > .aside {
+    width: calc(100% / 16 * 4); /* 4/16 width */
+}
+
+.aside {
+    margin: 2em;
+    background: rgb(235,235,235);
+    background: linear-gradient(90deg, rgba(235,235,235,1) 0%, rgba(237,237,237,1) 35%, rgba(221,221,221,1) 100%);
+    border: 1px solid #ccc;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 24px;
+    padding-bottom: 2rem;
+    border-radius: 8px 0;
+    min-width: 15em;
+    height: 100%;
+    box-shadow: 10px 10px 10px 3px hsla(0, 0%, 0%, 0.1);
+    -webkit-box-shadow: 10px 10px 10px 3px hsla(0, 0%, 0%, 0.1);
+    -moz-box-shadow: 10px 10px 10px 3px hsla(0, 0%, 0%, 0.1);
+    font-family: 'Roboto', sans-serif;
+}
+
+.aside h4 {
+    border-bottom: 1px solid #ccc;
+}
+
+.aside li {
+    list-style: none;
+}
+
+.aside li a:link {
+    color: rgb(128, 128, 128);
+}
+
+.aside li a:visited  {
+    color: rgb(32, 32, 32);
+}
