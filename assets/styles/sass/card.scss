@@ -1,4 +1,53 @@
+.cards {
+    margin-top: 2rem;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1rem;
+}
+
 .card {
-    background-color: hsl(0, 40%, 40%);
-    min-height: 2rem;
+    position: relative;
+    border: 1px solid black;
+    min-height: 8rem;
+    min-width: 6rem;
+    border-radius: 8px;
+    font-size: 1.4rem;
+    text-align: center;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.suit {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.suit-♠ {
+    color: $card-black-color;
+}
+
+.suit-♥ {
+    color: $card-red-color;
+}
+
+.suit-♦ {
+    color: $card-red-color;
+}
+
+.suit-♣ {
+    color: $card-black-color;
+}
+
+.value {
+    grid-area: 2 / 2 / 3 / 3;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.suit-alt {
+    grid-area: 3 / 3 / 4 / 4;
+    transform: rotate(180deg);
 }

@@ -1,0 +1,34 @@
+{% extends "base.html.twig" %}
+
+{% block title %}API{% endblock %}
+
+{% block content %}
+<main class="main">
+    <h1>API</h1>
+
+    <p>Dagens citat, <a href="api/quote">länk till API</a>. (kmom01)</p>
+
+    <form class="form" method="GET" action="{{ deckSortedURL }}">
+        <fieldset>
+           <legend>Visar upp kortleken (sorterad)</legend>
+            <input type="submit" value="Visa kortleken">
+        </fieldset>
+    </form>
+
+    <form class="form" method="POST" action="{{ deckShuffledURL }}">
+        <fieldset>
+           <legend>Visar upp kortleken (shuffled)</legend>
+            <input type="submit" value="Visa kortleken">
+        </fieldset>
+    </form>
+
+    <form class="form" method="POST" action="{{ deckDrawURL }}">
+        <fieldset>
+           <legend>Drar antal kort från kortleken</legend>
+            <label for="num_of_cards">Antal kort</label>
+            <input id="num_of_cards" type="number" name="num_of_cards" min="1" max="99" value="1" required>
+            <input type="submit" value="Drar antal kort">
+        </fieldset>
+    </form>
+</main>
+{% endblock %}

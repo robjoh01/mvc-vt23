@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Draw Cards{% endblock %}
+
+{% block content %}
+<main class="main">
+    <h1>Drawed {{ num_of_cards }} card/s of {{ deck_num_of_cards }} cards</h1>
+
+    <div class="cards">
+    {% for card in cards %}
+        <div class="card">
+            <span>{{ card }}</span>
+        </div>
+    {% endfor %}
+    </div>
+</main>
+{% endblock %}
