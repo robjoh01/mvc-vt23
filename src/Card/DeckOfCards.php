@@ -6,32 +6,40 @@ use App\Card\CardGraphic;
 
 class DeckOfCards
 {
-    private $cards = [];
-    private $suits = ['♥', '♦', '♣', '♠'];
-    private $values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+    /** @var Card[] */
+    private array $cards = [];
 
+    /** @var string[] */
+    private array $suits = ['♥', '♦', '♣', '♠'];
+
+    /** @var string[] */
+    private array $values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+
+    /** @param Card[] $cards */
     public function __construct(array $cards = null)
     {
         $this->cards = [];
 
         if ($cards !== null) {
             $this->cards = $cards;
-        } else {
-            foreach ($this->suits as $suit) {
-                foreach ($this->values as $value) {
-                    $card = new CardGraphic($suit, $value);
-                    $this->cards[] = $card;
-                }
+            return;
+        }
+
+        foreach ($this->suits as $suit) {
+            foreach ($this->values as $value) {
+                $card = new CardGraphic($suit, $value);
+                array_push($this->cards, $card);
             }
         }
     }
 
+    /** @return Card[] */
     public function getCards(): array
     {
         return $this->cards;
     }
 
-    public function shuffle()
+    public function shuffle(): void
     {
         if ($this->isEmpty()) {
             foreach ($this->suits as $suit) {
@@ -45,36 +53,45 @@ class DeckOfCards
         shuffle($this->cards);
     }
 
-    public function draw(): Card
+    public function draw(): mixed
     {
         return array_shift($this->cards);
     }
 
+    /** @return Card[] */
     public function getSortedCards(): array
     {
-        usort($this->cards, function ($a, $b) {
-            if ($a->getSuit() === $b->getSuit()) {
-                $valueIndex1 = array_search($a->getValue(), $this->values);
-                $valueIndex2 = array_search($b->getValue(), $this->values);
+        /** @param Card $cardA */
+        /** @param Card $cardB */
+        usort($this->cards, function ($cardA, $cardB) {
+            if ($cardA->getSuit() === $cardB->getSuit()) {
+                /** @var int */
+                $valueIndex1 = array_search($cardA->getValue(), $this->values);
+
+                /** @var int */
+                $valueIndex2 = array_search($cardB->getValue(), $this->values);
 
                 return $valueIndex1 - $valueIndex2;
-            } else {
-                $suitIndex1 = array_search($a->getSuit(), $this->suits);
-                $suitIndex2 = array_search($b->getSuit(), $this->suits);
-
-                return $suitIndex1 - $suitIndex2;
             }
+
+            /** @var int */
+            $suitIndex1 = array_search($cardA->getSuit(), $this->suits);
+
+            /** @var int */
+            $suitIndex2 = array_search($cardB->getSuit(), $this->suits);
+
+            return $suitIndex1 - $suitIndex2;
         });
 
         return $this->cards;
     }
 
-    public function getCardCount()
+    public function getCardCount(): int
     {
         return count($this->cards);
     }
 
-    public function isEmpty()
+    public function isEmpty(): bool
     {
         return $this->getCardCount() <= 0;
     }

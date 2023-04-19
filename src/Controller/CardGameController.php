@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use Exception;
+
+use App\Card\Card;
 use App\Card\CardGraphic;
 use App\Card\CardHand;
 use App\Card\DeckOfCards;
@@ -23,7 +26,9 @@ class CardGameController extends AbstractController
     public function cardDeck(
         SessionInterface $session
     ): Response {
-        $deck = new DeckOfCards($session->get('deck_of_cards', null));
+        /** @var Card[] */
+        $deckOfCards = $session->get('deck_of_cards', null);
+        $deck = new DeckOfCards($deckOfCards);
         $cards = $deck->getSortedCards();
 
         $data = [
@@ -38,7 +43,9 @@ class CardGameController extends AbstractController
     public function cardDeckShuffle(
         SessionInterface $session
     ): Response {
-        $deck = new DeckOfCards($session->get('deck_of_cards', null));
+        /** @var Card[] */
+        $deckOfCards = $session->get('deck_of_cards', null);
+        $deck = new DeckOfCards($deckOfCards);
         $deck->shuffle();
 
         $data = [
@@ -55,15 +62,20 @@ class CardGameController extends AbstractController
     public function cardDraw(
         SessionInterface $session
     ): Response {
-        $deck = new DeckOfCards($session->get('deck_of_cards', null));
+        /** @var Card[] */
+        $deckOfCards = $session->get('deck_of_cards', null);
+        $deck = new DeckOfCards($deckOfCards);
 
         if ($deck->isEmpty()) {
-            throw new \Exception("Can not draw with an empty deck.");
+            throw new Exception("Can not draw with an empty deck.");
         }
 
         $hand = new CardHand();
 
-        $hand->add($deck->draw());
+        /** @var Card */
+        $newCard = $deck->draw();
+
+        $hand->add($newCard);
 
         $data = [
             "cards" => $hand->getString(),
@@ -81,16 +93,24 @@ class CardGameController extends AbstractController
         SessionInterface $session,
         int $num
     ): Response {
-        $deck = new DeckOfCards($session->get('deck_of_cards', null));
+        /** @var Card[] */
+        $deckOfCards = $session->get('deck_of_cards', null);
+        $deck = new DeckOfCards($deckOfCards);
 
-        if ($num > $deck->getCardCount()) {
-            throw new \Exception("Can not draw more than '$deck->getCardCount()' cards!");
+        /** @var int */
+        $numOfCards = $deck->getCardCount();
+
+        if ($num > $numOfCards) {
+            throw new Exception("Can not draw more than '$numOfCards' cards!");
         }
 
         $hand = new CardHand();
 
         for ($i = 1; $i <= $num; $i++) {
-            $hand->add($deck->draw());
+            /** @var Card */
+            $newCard = $deck->draw();
+
+            $hand->add($newCard);
         }
 
         $data = [

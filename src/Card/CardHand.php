@@ -4,7 +4,8 @@ namespace App\Card;
 
 class CardHand
 {
-    private $cards = [];
+    /** @var Card[] */
+    private array $cards = [];
 
     public function add(Card $card): void
     {
@@ -13,6 +14,7 @@ class CardHand
 
     public function remove(Card $card): void
     {
+        /** @var int */
         $index = array_search($card, $this->cards);
 
         if ($index !== false) {
@@ -20,6 +22,9 @@ class CardHand
         }
     }
 
+    /**
+     * @return array<string>
+     */
     public function getString(): array
     {
         $values = [];
@@ -31,7 +36,7 @@ class CardHand
         return $values;
     }
 
-    public function getCardCount()
+    public function getCardCount(): int
     {
         return count($this->cards);
     }

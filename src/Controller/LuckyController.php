@@ -19,7 +19,7 @@ class LuckyController
     }
 
     #[Route("/lucky/hi")]
-    public function hi(): Response
+    public function jsonHi(): Response
     {
         return new Response(
             '<html><body>Hi to you!</body></html>'
@@ -27,12 +27,12 @@ class LuckyController
     }
 
     #[Route("/api/lucky/number")]
-    public function jsonNnumber(): Response
+    public function jsonNumber(): Response
     {
-        $this->number = random_int(0, 100);
+        $number = random_int(0, 100);
 
         $data = [
-            'lucky-number' => $this->number,
+            'lucky-number' => $number,
             'lucky-message' => 'Hi there!',
         ];
 

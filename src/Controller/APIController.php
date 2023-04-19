@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
-use App\Card\DeckOfCards;
+use Exception;
+
 use App\Card\Card;
 use App\Card\CardHand;
+use App\Card\DeckOfCards;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,7 +32,9 @@ class APIController extends AbstractController
     public function apiDeck(
         SessionInterface $session
     ): Response {
-        $deck = new DeckOfCards($session->get('deck_of_cards', null));
+        /** @var Card[] */
+        $deckOfCards = $session->get('deck_of_cards', null);
+        $deck = new DeckOfCards($deckOfCards);
         $cards = $deck->getSortedCards();
 
         $cardStrings = [];
@@ -57,7 +61,9 @@ class APIController extends AbstractController
     public function apiDeckShuffle(
         SessionInterface $session
     ): Response {
-        $deck = new DeckOfCards($session->get('deck_of_cards', null));
+        /** @var Card[] */
+        $deckOfCards = $session->get('deck_of_cards', null);
+        $deck = new DeckOfCards($deckOfCards);
         $deck->shuffle();
 
         $cards = $deck->getCards();
@@ -89,21 +95,26 @@ class APIController extends AbstractController
     ): Response {
         $numCards = $request->request->get('num_of_cards');
 
-        $deck = new DeckOfCards($session->get('deck_of_cards', null));
+        /** @var Card[] */
+        $deckOfCards = $session->get('deck_of_cards', null);
+        $deck = new DeckOfCards($deckOfCards);
 
         if ($deck->isEmpty()) {
-            throw new \Exception("Can not draw more cards!");
+            throw new Exception("Can not draw more cards!");
         }
 
         if ($numCards > $deck->getCardCount()) {
             $count = $deck->getCardCount();
-            throw new \Exception("Can not draw more than '$count' cards!");
+            throw new Exception("Can not draw more than '$count' cards!");
         }
 
         $hand = new CardHand();
 
         for ($i = 1; $i <= $numCards; $i++) {
-            $hand->add($deck->draw());
+            /** @var Card */
+            $newCard = $deck->draw();
+
+            $hand->add($newCard);
         }
 
         $data = [
@@ -122,7 +133,7 @@ class APIController extends AbstractController
         return $response;
     }
 
-    public function getDailyQuote()
+    public function getDailyQuote(): string
     {
         // array of quotes to select between
         $quotes = array(

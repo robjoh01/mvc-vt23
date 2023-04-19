@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use Exception;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Dice\Dice;
 use App\Dice\DiceGraphic;
@@ -37,7 +39,7 @@ class DiceGameController extends AbstractController
     public function testRollDices(int $num): Response
     {
         if ($num > 99) {
-            throw new \Exception("Can not roll more than 99 dices!");
+            throw new Exception("Can not roll more than 99 dices!");
         }
 
         $diceRoll = [];
@@ -61,7 +63,7 @@ class DiceGameController extends AbstractController
     public function testDiceHand(int $num): Response
     {
         if ($num > 99) {
-            throw new \Exception("Can not roll more than 99 dices!");
+            throw new Exception("Can not roll more than 99 dices!");
         }
 
         $hand = new DiceHand();
@@ -69,9 +71,9 @@ class DiceGameController extends AbstractController
         for ($i = 1; $i <= $num; $i++) {
             if ($i % 2 === 1) {
                 $hand->add(new DiceGraphic());
-            } else {
-                $hand->add(new Dice());
             }
+
+            $hand->add(new Dice());
         }
 
         $hand->roll();
@@ -94,6 +96,7 @@ class DiceGameController extends AbstractController
     public function roll(
         SessionInterface $session
     ): Response {
+        /** @var DiceHand */
         $hand = $session->get("pig_dicehand");
         $hand->roll();
 
@@ -162,6 +165,7 @@ class DiceGameController extends AbstractController
     public function play(
         SessionInterface $session
     ): Response {
+        /** @var DiceHand */
         $dicehand = $session->get("pig_dicehand");
 
         $data = [
