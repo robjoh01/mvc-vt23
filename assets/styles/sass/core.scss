@@ -14,6 +14,7 @@
 @import 'flash';
 @import 'dice';
 @import 'card';
+@import 'card-game';
 @import 'footer';
 @import 'responsive';
 
@@ -42,6 +43,10 @@ h1 {
 
 ul, ol {
     list-style: none;
+}
+
+a {
+    text-decoration: none;
 }
 
 pre {

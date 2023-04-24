@@ -1,0 +1,33 @@
+.rules {
+    list-style-type: square;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    p {
+        font-size: 1rem;
+    }
+}
+
+.a-btn {
+    display: inline-block;
+    margin: 0.5rem;
+}
+
+.a-btn button {
+    background-color: transparent;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: 2px solid hsl(0deg, 0%, 11%);
+    font-family: monospace;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    transition: all 250ms ease-in-out 50ms;
+
+    &:hover {
+        background-color: hsl(0deg, 0%, 11%);
+        border-color: hsl(0deg, 0%, 93%);
+        color: hsl(0deg, 0%, 93%);
+        cursor: pointer;
+    }
+}
