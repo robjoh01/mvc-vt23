@@ -54,3 +54,15 @@
 .aside li a:visited  {
     color: rgb(32, 32, 32);
 }
+
+.two-flex-layout {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+.flex-layout {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}

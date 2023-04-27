@@ -4,13 +4,15 @@ namespace App\Card;
 
 class Card
 {
-    private string $suit;
-    private string $value;
+    protected string $suit;
+    protected string $value;
+    protected int $score;
 
-    public function __construct(string $suit, string $value)
+    public function __construct(string $suit, string $value, int $score)
     {
         $this->suit = $suit;
         $this->value = $value;
+        $this->score = $score;
     }
 
     public function getSuit(): string
@@ -21,6 +23,11 @@ class Card
     public function getValue(): string
     {
         return $this->value;
+    }
+
+    public function getScore(): int
+    {
+        return $this->score;
     }
 
     public function getAsString(): string

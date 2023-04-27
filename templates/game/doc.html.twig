@@ -4,15 +4,42 @@
 
 {% block content %}
 <main class="main">
-    <h1>Documentation</h1>
+    <h1>Dokumentation</h1>
+<pre>
+
+Eftersom jag har tidigare skapat klasser inom kortspel, behöver jag kanske bara ändra minimal saker. Till exempel korten utseende.
+
+* <em>Card</em> - är kort klassen som håller information om vad för kort det är. Det vill säga den spara <em>suit</em>, <em>value</em>.
+
+* <em>CardGraphic</em> - är en klass som ärvs av <em>Card</em> klassen. Klassen håller information om vad det är för typ av bild som ska visas upp.
+
+* <em>CardHand</em> - håller information om spelarens kort. Det vill säga en array om korten, samt funktioner för att lägga till och ta bort kort.
+
+* <em>DeckOfCards</em> - håller information om vilka kort som finns i kortleken. Den här funktioner för att plocka ett kort, samt shuffle om kortleken.
+
+En sak som saknas i klasserna är ett poäng system. Där jag får implementera ett räknesätt för att räkna ihop poäng i <em>CardHand</em>.
+</pre>
+    <div class="flex-layout">
     <figure>
         <img class="img"
-            src="{{ asset('img/studenten.png') }}"
-            alt="Studenten 2020"
+            src="{{ asset('img/flowchart.png') }}"
+            width="1439"
+            alt="Flödesschema"
         />
         <figcaption>
-            <span class="un">Robin Johannesson, Student 2020</span>
+            <span class="un">Flödesschema</span>
         </figcaption>
     </figure>
+    <figure>
+        <img class="img"
+            src="{{ asset('img/pseudocode.png') }}"
+            width="752"
+            alt="Psuedokod"
+        />
+        <figcaption>
+            <span class="un">Psuedokod</span>
+        </figcaption>
+    </figure>
+    </div>
 </main>
 {% endblock %}

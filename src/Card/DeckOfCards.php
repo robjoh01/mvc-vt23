@@ -15,6 +15,9 @@ class DeckOfCards
     /** @var string[] */
     private array $values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 
+    /** @var int[] */
+    private array $scores = [14, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+
     /** @param Card[] $cards */
     public function __construct(array $cards = null)
     {
@@ -27,8 +30,9 @@ class DeckOfCards
 
         foreach ($this->suits as $suit) {
             foreach ($this->values as $value) {
-                $card = new CardGraphic($suit, $value);
-                array_push($this->cards, $card);
+                $score = $this->scores[array_search($value, $this->values)];
+                $card = new CardGraphic($suit, $value, $score);
+                $this->cards[] = $card;
             }
         }
     }
@@ -41,15 +45,7 @@ class DeckOfCards
 
     public function shuffle(): void
     {
-        if ($this->isEmpty()) {
-            foreach ($this->suits as $suit) {
-                foreach ($this->values as $value) {
-                    $card = new CardGraphic($suit, $value);
-                    $this->cards[] = $card;
-                }
-            }
-        }
-
+        $this->__construct();
         shuffle($this->cards);
     }
 

@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+
+{% block title %}End - 21 Card Game{% endblock %}
+
+{% block content %}
+<main class="main">
+    <h1>Slutsidan</h1>
+
+    {% if is_player_winner and not is_ai_winner %}
+    <p>Hura! <b>Du vann spelet!</b></p>
+    <p>Du fick '{{ player_score }}' poäng.</p>
+    <p>AI fick '{{ ai_score }}' poäng.</p>
+    <br>
+    <iframe src="https://giphy.com/embed/LlYjGi9rErbLjyaMNr" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/ThisIsMashed-animation-animated-mashed-LlYjGi9rErbLjyaMNr">via GIPHY</a></p>
+    {% elseif is_ai_winner and not is_player_winner %}
+    <p>AI vann spelet. <b>Vill du försöka igen?</b></p>
+    <p>Du fick '{{ player_score }}' poäng.</p>
+    <p>AI fick '{{ ai_score }}' poäng.</p>
+    <br>
+    <iframe src="https://giphy.com/embed/26FeWWOMsz7cWeYcU" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/desusandmero-crying-26FeWWOMsz7cWeYcU">via GIPHY</a></p>
+    {% endif %}
+
+    <a class="a-btn" href="{{ path('game') }}">
+        <button>Tillbaka till spelet</button>
+    </a>
+
+    <a class="a-btn" href="{{ path('game_doc') }}">
+        <button>Dokumentation</button>
+    </a>
+</main>
+{% endblock %}

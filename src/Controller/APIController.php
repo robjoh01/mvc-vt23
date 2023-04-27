@@ -169,4 +169,61 @@ class APIController extends AbstractController
 
         return $response;
     }
+
+    /**
+     * @Route("/api/game")
+     */
+    public function getCurrentStatusOfCardGame(
+        SessionInterface $session
+    ): Response {
+        /** @var Card[] */
+        $deckOfCards = $session->get("deck_of_cards");
+
+        /** @var Card[] */
+        $playerCards = $session->get("player_cards");
+        $playerScore = $session->get("player_score");
+
+        /** @var Card[] */
+        $aiCards =  $session->get("ai_cards");
+        $aiScore =  $session->get("ai_score");
+
+        /** @var string[] */
+        $deckOfCardsAsString = [];
+
+        foreach ($deckOfCards as $card) {
+            $deckOfCardsAsString[] = $card->getAsString();
+        }
+
+        /** @var string[] */
+        $playerCardsAsString = [];
+
+        foreach ($playerCards as $card) {
+            $playerCardsAsString[] = $card->getAsString();
+        }
+
+        /** @var string[] */
+        $aiCardsAsString = [];
+
+        foreach ($aiCards as $card) {
+            $aiCardsAsString[] = $card->getAsString();
+        }
+
+        $data = [
+            "player_cards" => $playerCardsAsString,
+            "player_score" => $playerScore,
+            "ai_cards" => $aiCardsAsString,
+            "ai_score" => $aiScore,
+            "is_player_winner" => $playerScore < 21 && $aiScore > 21,
+            "is_ai_winner" => $aiScore < 21 && $playerScore > 21,
+            "num_of_cards_in_deck" => count($deckOfCardsAsString),
+            "deck_of_cards" => $deckOfCardsAsString,
+        ];
+
+        $response = new JsonResponse($data);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE
+        );
+
+        return $response;
+    }
 }

@@ -1,0 +1,48 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Playing 21 Card Game{% endblock %}
+
+{% block content %}
+<main class="main">
+    <h1>Playing 21 Card Game</h1>
+    {{ include('flash.html.twig') }}
+    <div class="game-root">
+        <div class="game-container">
+            <div class="player">
+                <h2>Player [{{ player_score }} Poäng]</h2>
+                <br>
+                {% for card in player_cards %}
+                    <img class="card-graphic" src="{{ asset(card.getImagePath()) }}" alt="{{ card.getImageName() }}">
+                {% endfor %}
+                <br>
+            </div>
+            <div class="ai">
+                <h2>AI [{{ ai_score }} Poäng] </h2>
+                <br>
+                {% for card in ai_cards %}
+                    <img class="card-graphic" src="{{ asset(card.getImagePath()) }}" alt="{{ card.getImageName() }}">
+                {% endfor %}
+                <br>
+            </div>
+        </div>
+    </div>
+    <div class="control-section">
+        <a class="a-btn green" href="{{ path('game_draw') }}">
+            <button>Drar ett nytt kort</button>
+        </a>
+
+        <a class="a-btn orange" href="{{ path('game_skip') }}">
+            <button>Skippa över</button>
+        </a>
+    </div>
+    <div class="control-section">
+        <a class="a-btn red" href="{{ path('game_init') }}">
+            <button>Starta om spelet</button>
+        </a>
+
+        <a class="a-btn" href="{{ path('game') }}">
+            <button>Tillbaka till startsidan</button>
+        </a>
+    </div>
+</main>
+{% endblock %}
