@@ -203,8 +203,8 @@ class CardGameController extends AbstractController
             "player_score" => $playerScore,
             "ai_cards" => $aiHand->getCards(),
             "ai_score" => $aiScore,
-            "is_player_winner" => $playerScore < 21 && $aiScore > 21,
-            "is_ai_winner" => $aiScore < 21 && $playerScore > 21,
+            "is_player_winner" => $playerScore <= 21 && $aiScore > 21,
+            "is_ai_winner" => $aiScore <= 21 && $playerScore > 21,
         ];
 
         return $this->render('game/end.html.twig', $data);
