@@ -28,7 +28,7 @@ class CardGameController extends AbstractController
         return $this->render("game/doc.html.twig");
     }
 
-    #[Route("/game/init", name: "game_init")]
+    #[Route("/game/init", name: "game_init", methods: ['POST'])]
     public function initGame(
         SessionInterface $session
     ): Response {
@@ -46,7 +46,7 @@ class CardGameController extends AbstractController
         $session->set("deck_of_cards", $deck->getCards());
         $session->set("player_cards", $playerHand->getCards());
         $session->set("player_score", $playerScore);
-        $session->set("ai_cards", []);
+        $session->set("ai_cards", null);
         $session->set("ai_score", 0);
 
         return $this->redirectToRoute("game_render");
@@ -58,10 +58,20 @@ class CardGameController extends AbstractController
     ): Response {
         /** @var Card[] */
         $deckOfCards = $session->get("deck_of_cards", null);
+
+        if ($deckOfCards == null) {
+            throw new Exception("Deck of cards cannot be null!");
+        }
+
         $deck = new DeckOfCards($deckOfCards);
 
         /** @var Card[] */
         $playerCards = $session->get("player_cards", null);
+
+        if ($playerCards == null) {
+            throw new Exception("Player cards cannot be null!");
+        }
+
         $playerHand = new CardHand($playerCards);
 
         /** @var Card[] */
@@ -82,7 +92,7 @@ class CardGameController extends AbstractController
         return $this->render("game/render.html.twig", $data);
     }
 
-    #[Route("/game/draw", name: "game_draw")]
+    #[Route("/game/draw", name: "game_draw", methods: ['GET'])]
     public function drawCardGame(
         SessionInterface $session
     ): Response {
@@ -115,7 +125,7 @@ class CardGameController extends AbstractController
         return $this->redirectToRoute("game_render");
     }
 
-    #[Route("/game/skip", name: "game_skip")]
+    #[Route("/game/skip", name: "game_skip", methods: ['GET'])]
     public function skipRoundGame(
         SessionInterface $session
     ): Response {
@@ -168,7 +178,7 @@ class CardGameController extends AbstractController
         return $this->redirectToRoute("game_render");
     }
 
-  #[Route("/game/end", name: "game_end")]
+    #[Route("/game/end", name: "game_end")]
     public function gameEnd(
         SessionInterface $session
     ): Response {

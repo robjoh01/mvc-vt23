@@ -6,15 +6,13 @@
 <main class="main">
     <h1>21 kortspel</h1>
 
-    <a class="a-btn" href="{{ path('game_init') }}">
-        <button>Starta spelet</button>
-    </a>
+    <form class="form" method="POST" action="{{ path('game_init') }}">
+        <input type="submit" name="do_it" value="Starta spelet">
 
-    <a class="a-btn" href="{{ path('game_doc') }}">
-        <button>Dokumentation</button>
-    </a>
-
-    <br><br>
+        <a class="a-btn" href="{{ path('game_doc') }}">
+            <button>Dokumentation</button>
+        </a>
+    </form>
     <h2>Information</h2>
     <hr>
 <pre>
