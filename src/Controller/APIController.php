@@ -224,8 +224,8 @@ class APIController extends AbstractController
             "player_score" => $playerScore,
             "ai_cards" => $aiCardsAsString,
             "ai_score" => $aiScore,
-            "is_player_winner" => $playerScore < 21 && $aiScore > 21,
-            "is_ai_winner" => $aiScore < 21 && $playerScore > 21,
+            "is_player_winner" => $playerScore <= 21 && $aiScore > 21,
+            "is_ai_winner" => $aiScore <= 21 && $playerScore > 21,
             "num_of_cards_in_deck" => count($deckOfCardsAsString),
             "deck_of_cards" => $deckOfCardsAsString,
         ];
