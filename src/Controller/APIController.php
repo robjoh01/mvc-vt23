@@ -179,21 +179,12 @@ class APIController extends AbstractController
         /** @var Card[] */
         $deckOfCards = $session->get("deck_of_cards", []);
 
-        if ($deckOfCards == null) {
-            throw new Exception("Must initialize the game first!");
-        }
-
         /** @var Card[] */
         $playerCards = $session->get("player_cards", []);
-
-        if ($playerCards == null) {
-            throw new Exception("Must initialize the game first!");
-        }
-
         $playerScore = $session->get("player_score", 0);
 
         /** @var Card[] */
-        $aiCards =  $session->get("ai_cards", null);
+        $aiCards =  $session->get("ai_cards", []);
         $aiScore =  $session->get("ai_score", 0);
 
         /** @var string[] */
@@ -213,13 +204,14 @@ class APIController extends AbstractController
         /** @var string[] */
         $aiCardsAsString = [];
 
-        if ($aiCards != null) {
-            foreach ($aiCards as $card) {
-                $aiCardsAsString[] = $card->getAsString();
-            }
+        foreach ($aiCards as $card) {
+            $aiCardsAsString[] = $card->getAsString();
         }
 
+        $hasInitialize = $session->get("has_initialize", false);
+
         $data = [
+            "has_initialize" => $hasInitialize,
             "player_cards" => $playerCardsAsString,
             "player_score" => $playerScore,
             "ai_cards" => $aiCardsAsString,

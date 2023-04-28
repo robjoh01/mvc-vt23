@@ -5,14 +5,12 @@
 {% block content %}
 <main class="main">
     <h1>21 kortspel</h1>
-
-    <form class="form" method="POST" action="{{ path('game_init') }}">
-        <input type="submit" name="do_it" value="Starta spelet">
-
-        <a class="a-btn" href="{{ path('game_doc') }}">
-            <button>Dokumentation</button>
-        </a>
-    </form>
+    <a class="a-btn" href="{{ path('game_init') }}">
+        <button>Starta spelet</button>
+    </a>
+    <a class="a-btn" href="{{ path('game_doc') }}">
+        <button>Dokumentation</button>
+    </a>
     <h2>Information</h2>
     <hr>
 <pre>

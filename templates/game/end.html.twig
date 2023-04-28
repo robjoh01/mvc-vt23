@@ -18,6 +18,12 @@
     <p>AI fick '{{ ai_score }}' poäng.</p>
     <br>
     <iframe src="https://giphy.com/embed/26FeWWOMsz7cWeYcU" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/desusandmero-crying-26FeWWOMsz7cWeYcU">via GIPHY</a></p>
+    {% else %}
+    <p>Oops! Något gick fel. 😕 <b>Vill du försöka igen?</b></p>
+    <p>Du fick '{{ player_score }}' poäng.</p>
+    <p>AI fick '{{ ai_score }}' poäng.</p>
+    <br>
+    <iframe src="https://giphy.com/embed/dsWOUTBz5aae8ET8Ss" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/afassoftware-oh-whoops-404-dsWOUTBz5aae8ET8Ss">via GIPHY</a></p>
     {% endif %}
 
     <a class="a-btn" href="{{ path('game') }}">
