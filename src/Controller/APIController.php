@@ -7,6 +7,7 @@ use Exception;
 use App\Card\Card;
 use App\Card\CardHand;
 use App\Card\DeckOfCards;
+use App\Game\Game;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -176,35 +177,31 @@ class APIController extends AbstractController
     public function getCurrentStatusOfCardGame(
         SessionInterface $session
     ): Response {
-        /** @var Card[] */
-        $deckOfCards = $session->get("deck_of_cards", []);
+        /** @var Game */
+        $game = $session->get("game", null);
 
-        /** @var Card[] */
-        $playerCards = $session->get("player_cards", []);
-        $playerScore = $session->get("player_score", 0);
-
-        /** @var Card[] */
-        $aiCards =  $session->get("ai_cards", []);
-        $aiScore =  $session->get("ai_score", 0);
+        $deck = $game->getDeck();
+        $playerHand = $game->getPlayerHand();
+        $aiHand = $game->getAIHand();
 
         /** @var string[] */
         $deckOfCardsAsString = [];
 
-        foreach ($deckOfCards as $card) {
+        foreach ($deck->getCards() as $card) {
             $deckOfCardsAsString[] = $card->getAsString();
         }
 
         /** @var string[] */
         $playerCardsAsString = [];
 
-        foreach ($playerCards as $card) {
+        foreach ($playerHand->getCards() as $card) {
             $playerCardsAsString[] = $card->getAsString();
         }
 
         /** @var string[] */
         $aiCardsAsString = [];
 
-        foreach ($aiCards as $card) {
+        foreach ($aiHand->getCards() as $card) {
             $aiCardsAsString[] = $card->getAsString();
         }
 
@@ -213,12 +210,12 @@ class APIController extends AbstractController
         $data = [
             "has_initialize" => $hasInitialize,
             "player_cards" => $playerCardsAsString,
-            "player_score" => $playerScore,
+            "player_score" => $playerHand->getScore(),
             "ai_cards" => $aiCardsAsString,
-            "ai_score" => $aiScore,
-            "is_player_winner" => $playerScore <= 21 && $aiScore > 21,
-            "is_ai_winner" => $aiScore <= 21 && $playerScore > 21,
-            "num_of_cards_in_deck" => count($deckOfCardsAsString),
+            "ai_score" => $aiHand->getScore(),
+            "is_player_winner" => $playerHand->getScore() <= 21 && $aiHand->getScore() > 21,
+            "is_ai_winner" => $aiHand->getScore() <= 21 && $playerHand->getScore() > 21,
+            "num_of_cards_in_deck" => $deck->getCardCount(),
             "deck_of_cards" => $deckOfCardsAsString,
         ];
 

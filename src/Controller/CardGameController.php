@@ -18,13 +18,6 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class CardGameController extends AbstractController
 {
-    protected Game $game;
-
-    public function __construct()
-    {
-        $this->game = new Game();
-    }
-
     #[Route("/game", name: "game")]
     public function home(): Response
     {
@@ -41,7 +34,10 @@ class CardGameController extends AbstractController
     public function initGame(
         SessionInterface $session
     ): Response {
-        $this->game->initialize($session);
+        $game = new Game();
+
+        $session->set("game", $game);
+        $session->set("has_initialize", true);
 
         return $this->redirectToRoute("game_render");
     }
@@ -56,16 +52,29 @@ class CardGameController extends AbstractController
             return $this->redirectToRoute("game_init");
         }
 
-        return $this->render("game/render.html.twig", $this->game->render($session));
+        /** @var Game */
+        $game = $session->get("game", null);
+
+        return $this->render("game/render.html.twig", $game->render());
     }
 
     #[Route("/game/draw", name: "game_draw", methods: ['GET'])]
     public function drawCardGame(
         SessionInterface $session
     ): Response {
-        $this->game->drawCard($session);
+        /** @var Game */
+        $game = $session->get("game", null);
 
-        if ($this->game->getPlayerScore($session) > 21) {
+        $game->drawCard();
+
+        $deck = $game->getDeck();
+        $playerHand = $game->getPlayerHand();
+
+        $session->set("deck_of_cards", $deck->getCards());
+        $session->set("player_cards", $playerHand->getCards());
+        $session->set("player_score", $playerHand->getScore());
+
+        if ($playerHand->getScore() > 21) {
             return $this->redirectToRoute("game_end");
         }
 
@@ -73,9 +82,8 @@ class CardGameController extends AbstractController
     }
 
     #[Route("/game/skip", name: "game_skip", methods: ['GET'])]
-    public function skipRoundGame(
-        SessionInterface $session
-    ): Response {
+    public function skipRoundGame(): Response
+    {
         return $this->redirectToRoute('game_ai');
     }
 
@@ -83,9 +91,19 @@ class CardGameController extends AbstractController
     public function aiDecisionGame(
         SessionInterface $session
     ): Response {
-        $this->game->aiDecision($session);
+        /** @var Game */
+        $game = $session->get("game", null);
 
-        if ($this->game->getAIScore($session) > 21) {
+        $game->aiDecision();
+
+        $deck = $game->getDeck();
+        $aiHand = $game->getAIHand();
+
+        $session->set("deck_of_cards", $deck->getCards());
+        $session->set("ai_cards", $aiHand->getCards());
+        $session->set("ai_score", $aiHand->getScore());
+
+        if ($aiHand->getScore() > 21) {
             return $this->redirectToRoute("game_end");
         }
 
@@ -96,6 +114,11 @@ class CardGameController extends AbstractController
     public function gameEnd(
         SessionInterface $session
     ): Response {
-        return $this->render('game/end.html.twig', $this->game->end($session));
+        /** @var Game */
+        $game = $session->get("game", null);
+
+        $session->set("has_initialize", false);
+
+        return $this->render('game/end.html.twig', $game->end());
     }
 }
