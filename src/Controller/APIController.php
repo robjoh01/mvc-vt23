@@ -180,6 +180,27 @@ class APIController extends AbstractController
         /** @var Game */
         $game = $session->get("game", null);
 
+        if (is_null($game)) {
+            $data = [
+                "has_initialize" => false,
+                "player_cards" => [],
+                "player_score" => 0,
+                "ai_cards" => [],
+                "ai_score" => 0,
+                "is_player_winner" => false,
+                "is_ai_winner" => false,
+                "num_of_cards_in_deck" => 0,
+                "deck_of_cards" => [],
+            ];
+
+            $response = new JsonResponse($data);
+            $response->setEncodingOptions(
+                $response->getEncodingOptions() | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE
+            );
+
+            return $response;
+        }
+
         $deck = $game->getDeck();
         $playerHand = $game->getPlayerHand();
         $aiHand = $game->getAIHand();
