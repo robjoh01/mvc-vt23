@@ -60,6 +60,33 @@ Jag lärde mig också om PHP linter och hur det kunde hjälpa när man skriver P
 </pre>
             <h3 id="kmom04">kmom04</h3>
 <pre>
+<b>Berätta hur du upplevde att skriva kod som testar annan kod med PHPUnit och hur du upplever phpunit rent allmänt.</b>
+
+Jag tog väldigt mycket om phpunit, samt hur enkelt och värdfullt vertyg var. Att den då visa upp din utvecklning i en fin hemsida med olika statisk på koden. Samt en overview, vilka kod delar som testat och många procect som kodtäcks.
+
+<b>Hur väl lyckades du med kodtäckningen av din kod, lyckades du nå mer än 90% kodtäckning?</b>
+
+Jag lyckades nå runt mellan 90-95%, däremot fanns det några saker som blev lite jobbiga att testa. Till exempel en switch case och if statements.
+
+<b>Upplever du din egen kod som “testbar kod” eller finns det delar i koden som är mer eller mindre testbar och finns det saker som kan göras för att förbättra kodens testbarhet?</b>
+
+Eftersom jag fick ändra kod struktur i kmom03, fick jag också en bra struktur för att testa min kod. Jag valde att bryta ner koden, så att funktionalitet är i ett separerat klass. På så sätt, kan jag testa mig små funktioner och olika scenario för att se om koden fungera.
+
+<b>Valde du att skriva om delar av din kod för att förbättra den eller göra den mer testbar, om så berätta lite hur du tänkte.</b>
+
+Jag valde att skriva om koden litegrann, så att jag kunde få mer än 80-90% av godkänn. Till exempel, ville jag fixa en switch case. Däremot fick ett klagomeddelande från linter, som säger att den behöver default case, i fall den inte hittar ett case.
+
+Annars, skriv jag om koden så att jag kunde kalla en funktion och uppfylla två funktioner i testning. Till exempel, för att fram många nummer av kort, istället för kalla en funktioner som returnera "count($this->cards)", jag kunde då istället anropa "getCards()" i funktionen. På så sätt kunde jag testa två funktioner i ett. Så, slut koden blir då: "count($this->getCards())".
+
+<b>Fundera över om du anser att testbar kod är något som kan identifiera “snygg och ren kod”.</b>
+
+Där du kan anropa en funktion som anropa flera funktioner med små kod, därmed kan du testa flera typer av funktionen, genom en anrop.
+
+Dock desto mer komplexitet en funktion har, desto mer tester får du göra. Till exempel, om ett värde kan få ett exception. Samt beroende på om det högt eller lågt värde, så kan exception ändras. Om värdet inte få ett exception, då måste skapa flera tester för testa den delen.
+
+<b>Vilken är din TIL för detta kmom?</b>
+
+Jag lärde mig hur PHP unit och PHP doc verktyg fungerade, samt hur man kunde använda det för testa sig kod och göra koden mer läsbar.
 </pre>
             <h3 id="kmom05">kmom05</h3>
 <pre>

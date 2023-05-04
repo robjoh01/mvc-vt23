@@ -12,7 +12,7 @@ class DiceHandTest extends TestCase
     /**
      * Construct dice hand object without arguments and check default values.
      */
-    public function testCreateDiceCheckDefaults()
+    public function testCreateDiceHandCheckDefaults(): void
     {
         $hand = new DiceHand();
 
@@ -27,7 +27,7 @@ class DiceHandTest extends TestCase
     /**
      * Construct dice hand object with arguments and check values.
      */
-    public function testDiceHandRoll()
+    public function testDiceHandRoll(): void
     {
         $hand = new DiceHand();
 

@@ -12,7 +12,7 @@ class DiceGraphicTest extends TestCase
     /**
      * Construct dice graphic object without arguments and check default values.
      */
-    public function testCreateDiceGraphicCheckDefaults()
+    public function testCreateDiceGraphicCheckDefaults(): void
     {
         $graphic = new DiceGraphic();
         $graphic->roll();

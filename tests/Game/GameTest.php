@@ -4,6 +4,8 @@ namespace App\Game;
 
 use Exception;
 
+use App\Card\Card;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -86,6 +88,7 @@ class GameTest extends TestCase
         $game = new Game();
         $renderData = $game->render();
 
+        /** @var Card[] */
         $playerCards = $renderData["player_cards"];
 
         $exp = 0;

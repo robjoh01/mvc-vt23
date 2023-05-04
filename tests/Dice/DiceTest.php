@@ -12,7 +12,7 @@ class DiceTest extends TestCase
     /**
      * Construct dice object without arguments and check default values.
      */
-    public function testCreateDiceCheckDefaults()
+    public function testCreateDiceCheckDefaults(): void
     {
         $die = new Dice();
 
@@ -27,7 +27,7 @@ class DiceTest extends TestCase
     /**
      * Roll the dice and check its outcome
      */
-    public function testRollDiceCheckOutcome()
+    public function testRollDiceCheckOutcome(): void
     {
         $die = new Dice();
         $res = $die->roll();

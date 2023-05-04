@@ -115,11 +115,11 @@ class APIController extends AbstractController
             /** @var Card */
             $newCard = $deck->draw();
 
-            $hand->add($newCard);
+            $hand->addCard($newCard);
         }
 
         $data = [
-            "cards" => $hand->getString(),
+            "cards" => $hand->getAsString(),
             "num_of_cards" => $hand->getCardCount(),
             "deck_num_of_cards" => $deck->getCardCount(),
         ];

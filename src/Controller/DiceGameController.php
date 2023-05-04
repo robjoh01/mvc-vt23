@@ -80,7 +80,7 @@ class DiceGameController extends AbstractController
 
         $data = [
             "num_dices" => $hand->getNumberDices(),
-            "diceRoll" => $hand->getString(),
+            "diceRoll" => $hand->getAsString(),
         ];
 
         return $this->render('pig/test/dicehand.html.twig', $data);
@@ -175,7 +175,7 @@ class DiceGameController extends AbstractController
             "pigDices" => $session->get("pig_dices"),
             "pigRound" => $session->get("pig_round"),
             "pigTotal" => $session->get("pig_total"),
-            "diceValues" => $dicehand->getString()
+            "diceValues" => $dicehand->getAsString()
         ];
 
         return $this->render('pig/play.html.twig', $data);
