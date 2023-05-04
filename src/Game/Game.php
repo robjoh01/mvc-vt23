@@ -26,10 +26,13 @@ class Game
         /** @var Card */
         $newCard = $this->deck->draw();
 
-        $this->playerHand->add($newCard);
+        $this->playerHand->addCard($newCard);
     }
 
-    /** @return mixed[] */
+    /**
+     * Converts game's data into an array of mixed values (specific for playing screen).
+     * @return mixed[]
+     */
     public function render(): array
     {
         $data = [
@@ -43,7 +46,10 @@ class Game
         return $data;
     }
 
-    public function drawCard(): void
+    /**
+     * Draw one ard from the deck, into the player's hand.
+     */
+    public function drawPlayerCard(): void
     {
         if ($this->deck->isEmpty()) {
             throw new Exception("Cannot draw with an empty deck.");
@@ -52,9 +58,12 @@ class Game
         /** @var Card */
         $newCard = $this->deck->draw();
 
-        $this->playerHand->add($newCard);
+        $this->playerHand->addCard($newCard);
     }
 
+    /**
+     * Run AI decision logic, where the AI can decide to draw a card or skip the round.
+     */
     public function aiDecision(): void
     {
         if ($this->deck->isEmpty()) {
@@ -67,7 +76,7 @@ class Game
             /** @var Card */
             $newCard = $this->deck->draw();
 
-            $this->aiHand->add($newCard);
+            $this->aiHand->addCard($newCard);
 
             $aiScore = $this->aiHand->getScore();
 
@@ -79,7 +88,10 @@ class Game
         }
     }
 
-    /** @return mixed[] */
+    /**
+     * Converts game's data into an array of mixed values (specific for end screen).
+     * @return mixed[]
+     */
     public function end(): array
     {
         $playerScore = $this->playerHand->getScore();
@@ -100,16 +112,25 @@ class Game
         return $data;
     }
 
+    /**
+     * Get deck of cards.
+     */
     public function getDeck(): DeckOfCards
     {
         return $this->deck;
     }
 
+    /**
+     * Get player hand.
+     */
     public function getPlayerHand(): CardHand
     {
         return $this->playerHand;
     }
 
+    /**
+     * Get AI hand.
+     */
     public function getAIHand(): CardHand
     {
         return $this->aiHand;

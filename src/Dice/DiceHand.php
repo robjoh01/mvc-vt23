@@ -9,11 +9,17 @@ class DiceHand
     /** @var Dice[] */
     private array $hand = [];
 
+    /**
+     * Add die to this array.
+     */
     public function add(Dice $die): void
     {
         $this->hand[] = $die;
     }
 
+    /**
+     * Roll all dices in this array.
+     */
     public function roll(): void
     {
         foreach ($this->hand as $die) {
@@ -21,12 +27,16 @@ class DiceHand
         }
     }
 
+    /**
+     * Get number of dices.
+     */
     public function getNumberDices(): int
     {
         return count($this->hand);
     }
 
     /**
+     * Get sum value of all of the dices.
      * @return array<int>
      */
     public function getValues(): array
@@ -41,9 +51,10 @@ class DiceHand
     }
 
     /**
+     * Get sum string of all of the dices.
      * @return array<string>
      */
-    public function getString(): array
+    public function getAsString(): array
     {
         $values = [];
 

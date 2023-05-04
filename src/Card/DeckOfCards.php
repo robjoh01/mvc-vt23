@@ -6,6 +6,9 @@ use App\Card\CardGraphic;
 
 class DeckOfCards
 {
+    // (Diamond, Club, Heart, Spade)
+    // (Ace, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen, King)
+
     /** @var Card[] */
     private array $cards = [];
 
@@ -37,24 +40,36 @@ class DeckOfCards
         }
     }
 
-    /** @return Card[] */
+    /**
+     * Get cards from the deck.
+     * @return Card[]
+     */
     public function getCards(): array
     {
         return $this->cards;
     }
 
+    /**
+     * Shuffle the deck in random order.
+     */
     public function shuffle(): void
     {
         $this->__construct();
         shuffle($this->cards);
     }
 
+    /**
+     * Draw one card from the deck.
+     */
     public function draw(): mixed
     {
         return array_shift($this->cards);
     }
 
-    /** @return Card[] */
+    /**
+     * Get sorted cards and return it as an array.
+     * @return Card[]
+     */
     public function getSortedCards(): array
     {
         /** @param Card $cardA */
@@ -82,11 +97,17 @@ class DeckOfCards
         return $this->cards;
     }
 
+    /**
+     * Get count of all cards in this deck.
+     */
     public function getCardCount(): int
     {
-        return count($this->cards);
+        return count($this->getCards());
     }
 
+    /**
+     * Check if card count less than zero, in this deck.
+     */
     public function isEmpty(): bool
     {
         return $this->getCardCount() <= 0;

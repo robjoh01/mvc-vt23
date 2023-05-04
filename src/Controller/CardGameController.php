@@ -65,7 +65,7 @@ class CardGameController extends AbstractController
         /** @var Game */
         $game = $session->get("game", null);
 
-        $game->drawCard();
+        $game->drawPlayerCard();
 
         $deck = $game->getDeck();
         $playerHand = $game->getPlayerHand();

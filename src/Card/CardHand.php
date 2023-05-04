@@ -13,17 +13,33 @@ class CardHand
         $this->cards = [];
 
         if ($cards !== null) {
-            $this->cards = $cards;
-            return;
+            foreach ($cards as $card) {
+                $this->addCard($card);
+            }
         }
     }
 
-    public function add(Card $card): void
+    /**
+     * Add a card to the list
+     */
+    public function addCard(Card $card): void
     {
         $this->cards[] = $card;
+        //array_push($this->cards, $card);
     }
 
-    public function remove(Card $card): void
+    /**
+     * Pop the element off the end of array.
+     */
+    public function popCard(): void
+    {
+        array_pop($this->cards);
+    }
+
+    /**
+     * Remove a card from the list
+     */
+    public function removeCard(Card $card): void
     {
         /** @var int */
         $index = array_search($card, $this->cards);
@@ -34,9 +50,10 @@ class CardHand
     }
 
     /**
+     * Combine cards into a string array, using getAsString() function.
      * @return array<string>
      */
-    public function getString(): array
+    public function getAsString(): array
     {
         $values = [];
 
@@ -48,6 +65,7 @@ class CardHand
     }
 
     /**
+     * Get all cards from the hand.
      * @return Card[]
      */
     public function getCards(): array
@@ -55,11 +73,17 @@ class CardHand
         return $this->cards;
     }
 
+    /**
+     * Get count of all cards in the hand.
+     */
     public function getCardCount(): int
     {
-        return count($this->cards);
+        return count($this->getCards());
     }
 
+    /**
+     * Get current score of all cards combined in the hand.
+     */
     public function getScore(): int
     {
         $score = 0;
@@ -71,6 +95,9 @@ class CardHand
         return $score;
     }
 
+    /**
+     * Clear all cards from the hand.
+     */
     public function clear(): void
     {
         $this->cards = [];

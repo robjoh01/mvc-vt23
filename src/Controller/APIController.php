@@ -177,7 +177,7 @@ class APIController extends AbstractController
     public function getCurrentStatusOfCardGame(
         SessionInterface $session
     ): Response {
-        /** @var Game */
+        /** @var ?Game */
         $game = $session->get("game", null);
 
         if (is_null($game)) {

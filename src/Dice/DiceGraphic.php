@@ -19,6 +19,9 @@ class DiceGraphic extends Dice
         parent::__construct();
     }
 
+    /**
+     * Get graphic as a string from an array of strings.
+     */
     public function getAsString(): string
     {
         return $this->representation[$this->value - 1];

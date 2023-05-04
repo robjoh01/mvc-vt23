@@ -15,21 +15,33 @@ class Card
         $this->score = $score;
     }
 
+    /**
+     * Get custom suit (set based on deck of cards)
+     */
     public function getSuit(): string
     {
         return $this->suit;
     }
 
+    /**
+     * Get custom value (set based on deck of cards)
+     */
     public function getValue(): string
     {
         return $this->value;
     }
 
+    /**
+     * Get custom score value (set based on deck of cards)
+     */
     public function getScore(): int
     {
         return $this->score;
     }
 
+    /**
+     * Get value and suit together as a string.
+     */
     public function getAsString(): string
     {
         return $this->value . $this->suit;
