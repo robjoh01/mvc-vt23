@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Välkommen till Biblioteket{% endblock %}
+
+{% block content %}
+<div class="book-library">
+    <img class="book-library-image" src="{{asset('img/book-6709160_960_720.jpg')}}">
+    <main class="main">
+        <div class="book-library-container">
+            <h1 class="book-library-title">Välkommen till Biblioteket</h1>
+            <center>
+                <a class="a-btn neg " href="{{ path("book_list") }}">
+                    <button>
+                        Visa alla böcker
+                    </button>
+                </a>
+                <a class="a-btn neg" href="{{ path("book_creator") }}">
+                    <button>
+                        Skapa en bok
+                    </button>
+                </a>
+            </center>
+        </div>
+    </main>
+</div>
+{% endblock %}

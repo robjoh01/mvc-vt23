@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Skapa din egen bok{% endblock %}
+
+{% block content %}
+
+<main class="main">
+    <form class="form book-form" method="POST" action="{{ path("book_create") }}">
+        <fieldset>
+            <legend>Skapa din en egen bok</legend>
+
+            <label for="title">Titel</label>
+            <input type="text" id="title" name="title" placeholder="Skriv in titlen..." required>
+
+            <label for="author">Författare</label>
+            <input type="text" id="author" name="author" placeholder="Skriv in författares namn..." required>
+
+            <label for="isbn">ISBN</label>
+            <input type="text" id="isbn" name="isbn" placeholder="Skriv in ISBN (XXX-X-XX-XXXXXX-X)..." required>
+
+            <label for="img_path">Bild URL</label>
+            <input type="text" id="img_path" name="img_path" placeholder="Skriv in bild URL..." required>
+
+            <input type="submit" name="do_it" value="Lägg till ny bok">
+            <input type="reset" value="Återställ informationen">
+        </fieldset>
+    </form>
+    <center>
+        <a class="orange a-btn" href="{{ path("book_library") }}">
+            <button>
+                Tillbaka
+            </button>
+        </a>
+    </center>
+</main>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Böcker i Biblioteket{% endblock %}
+
+{% block content %}
+
+{{ include('flash.html.twig') }}
+
+<main class="main">
+    <h1>Böcker i Biblioteket</h1>
+    <div class="book-container">
+        <div class="book-list">
+            {% for book in books %}
+            <a class="book-entry" href="{{ path('book', {id: book.id}) }}">
+                <img class="book-entry-image" src="{{ book.img_path }}" alt="{{ book.title }}">
+            </a>
+            {% endfor %}
+        </div>
+        <table class="table book-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Titel</th>
+                    <th>Författare</th>
+                    <th>ISBN</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for book in books %}
+                <tr>
+                    <td>{{ book.id }}</td>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.isbn }}</td>
+                    <td>
+                        <a href="{{ path('book', {id: book.id}) }}">Länk</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <center>
+        <a class="orange a-btn" href="{{ path("book_library") }}">
+            <button>
+                Tillbaka
+            </button>
+        </a>
+    </center>
+</main>
+{% endblock %}

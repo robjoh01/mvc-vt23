@@ -8,6 +8,10 @@ use App\Card\Card;
 use App\Card\CardHand;
 use App\Card\DeckOfCards;
 use App\Game\Game;
+
+use App\Repository\BookRepository;
+use App\Entity\Book;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -243,6 +247,46 @@ class APIController extends AbstractController
         $response = new JsonResponse($data);
         $response->setEncodingOptions(
             $response->getEncodingOptions() | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE
+        );
+
+        return $response;
+    }
+
+    #[Route('/api/library/books', name: 'api_library_books')]
+    public function getLibraryBooks(
+        BookRepository $bookRepository
+    ): Response {
+        $data = $bookRepository
+            ->findAll();
+
+        $response = $this->json($data);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT
+        );
+
+        return $response;
+    }
+
+    #[Route('api/library/book/{isbn}', name: 'api_library_book')]
+    public function getLibraryBookFromISBN(
+        BookRepository $bookRepository,
+        string $isbn,
+    ): Response {
+        $books = $bookRepository->findAll();
+
+        $data = [];
+        $bookId = "";
+
+        foreach ($books as $book) {
+            if ($isbn == $book->getIsbn()) {
+                $bookId = $book->getId();
+                $data = $bookRepository->find($bookId);
+            }
+        }
+
+        $response = $this->json($data);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT
         );
 
         return $response;

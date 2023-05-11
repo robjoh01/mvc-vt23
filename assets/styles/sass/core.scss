@@ -4,6 +4,7 @@
 @import 'two-col-layout';
 @import 'blockquotes';
 @import 'figure';
+@import 'button';
 @import 'code';
 @import 'form';
 @import 'rainbow-effect';
@@ -15,6 +16,7 @@
 @import 'dice';
 @import 'card';
 @import 'card-game';
+@import 'book';
 @import 'footer';
 @import 'responsive';
 
@@ -85,6 +87,7 @@ input {
 }
 
 .content-wrap {
+    display: flex;
     padding-bottom: 2.5rem;    /* Footer height */
     min-height: 100vh;
 }

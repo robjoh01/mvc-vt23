@@ -1,0 +1,67 @@
+.a-btn {
+    display: inline-block;
+    margin: 0.5rem;
+}
+
+.a-btn button {
+    background-color: transparent;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: 2px solid hsl(0deg, 0%, 11%);
+    color: hsl(0deg, 0%, 11%);
+    font-family: monospace;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    transition: all 250ms ease-in-out 50ms;
+
+    &:hover {
+        background-color: hsl(0deg, 0%, 11%);
+        border-color: hsl(0deg, 0%, 93%);
+        color: hsl(0deg, 0%, 93%);
+        cursor: pointer;
+    }
+}
+
+.a-btn.green button {
+    border-color: hsl(90deg, 20%, 41%);
+    color: hsl(90deg, 20%, 41%);
+
+    &:hover {
+        background-color: hsl(90deg, 20%, 41%);
+        border-color: hsl(90deg, 60%, 63%);
+        color: hsl(90deg, 60%, 63%);
+    }
+}
+
+.a-btn.red button {
+    border-color: hsl(0deg, 20%, 41%);
+    color: hsl(0deg, 20%, 41%);
+
+    &:hover {
+        background-color: hsl(0deg, 20%, 41%);
+        border-color: hsl(0deg, 60%, 63%);
+        color: hsl(0deg, 60%, 63%);
+    }
+}
+
+.a-btn.orange button {
+    border-color: hsl(20deg, 20%, 41%);
+    color: hsl(20deg, 20%, 41%);
+
+    &:hover {
+        background-color: hsl(20deg, 20%, 41%);
+        border-color: hsl(20deg, 60%, 63%);
+        color: hsl(20deg, 60%, 63%);
+    }
+}
+
+.a-btn.neg button {
+    border-color: hsl(0deg, 0%, 93%);
+    color: hsl(0deg, 0%, 93%);
+
+    &:hover {
+        background-color: hsl(0deg, 0%, 93%);
+        border-color: hsl(0deg, 0%, 11%);
+        color: hsl(0deg, 0%, 11%);
+    }
+}

@@ -25,3 +25,47 @@
         border-color: hsla(200, 50%, 30%, 0.5);
     }
 }
+
+.form input
+{
+    background-color: transparent;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: 2px solid hsl(0deg, 0%, 11%);
+    color: hsl(0deg, 0%, 11%);
+    font-family: monospace;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    transition: all 250ms ease-in-out 50ms;
+
+    &:focus {
+        background-color: hsl(0deg, 0%, 11%);
+        border-color: hsl(0deg, 0%, 93%);
+        color: hsl(0deg, 0%, 93%);
+        cursor: pointer;
+    }
+}
+
+.form input[type=submit]
+{
+    border-color: hsl(90deg, 20%, 41%);
+    color: hsl(90deg, 20%, 41%);
+
+    &:hover {
+        background-color: hsl(90deg, 20%, 41%);
+        border-color: hsl(90deg, 60%, 63%);
+        color: hsl(90deg, 60%, 63%);
+    }
+}
+
+.form input[type=reset]
+{
+    border-color: hsl(0deg, 20%, 41%);
+    color: hsl(0deg, 20%, 41%);
+
+    &:hover {
+        background-color: hsl(0deg, 20%, 41%);
+        border-color: hsl(0deg, 60%, 63%);
+        color: hsl(0deg, 60%, 63%);
+    }
+}
