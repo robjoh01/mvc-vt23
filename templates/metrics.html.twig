@@ -1,0 +1,97 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Metrics{% endblock %}
+
+{% block content %}
+
+<main class="main">
+    <h2>Introduktion</h2>
+<pre>
+När man programmera är det viktigt att ha en bra kodkvalitet, samt en "clean code", där koden är ren och är tydlig/begriplig och maintainable. När du skriver ren kod, tänker du också på de andra personerna som kommer och läsa, samt tolka din kod vid ett senare tillfälle. Du hjälper dig och andra att förstå syftet med din kod så att de kan göra ändringar i den så småningom.
+
+<b>Hur mäter man då en bra kodkvalitet?</b>
+I detta sammanhang kommer vi att fokusera på de sex C:na:
+
+</pre>
+    <div>
+        <h3>Codestyle</h3>
+<pre>
+<b>Codestyle</b> handlar om att följa konventioner och gemensamma regler för hur kod ska skrivas.
+
+I många environment/library/framework följs det olika principer, som programmerare hänvisat att följa. Till exempel med PHP finns det olika regler/lagar om hur man skriv "fin" PHP kod. Samt i Python och C# finns det olika regler om hur man ska skriva deras programmeringsspråk. Till exempel vill man i Python, att man skriva sina variabler till snake case.
+</pre>
+<br>
+        <h3>Coverage</h3>
+<pre>
+<b>Coverage</b> mäter hur mycket kod som har testas genom automatiserade testfall.
+
+<b>Coverage</b> är viktigt för att säkerställa att koden fungerar och att ändringar i koden inte leder till konstiga buggar eller problem.
+
+Till exempel, kan du testa en funktioner som har massa if statements, där du kollar om alla if statements uppfyller. Eller kan du testa om en funktion returnera det korrekta värdet (i sammanhang).
+</pre>
+<br>
+        <h3>Complexity</h3>
+<pre>
+<b>Complexity</b> mäter hur svårt det är att förstå och maintain:a koden. Det finns olika sätt att mäta kodens komplexitet.
+
+Man kan man räkna komplexitet, genom att räkna antalet rader av kod. Där antalet är beroenden av varandra. Till exempel, kan du har massa if statements, vilket skapa massa "branches", vilken i sin tur kan skapa massa beroenden på olika scenario. Och göra koden mer komplex att förstå/läsa i genom.
+
+Låg komplexitet underlättar felsökning, vidareutveckling och förbättrar kodens kvalitet.
+</pre>
+<br>
+        <h3>Cohesion</h3>
+<pre>
+<b>Cohesion</b> handlar om hur väl olika delar av koden är relaterade till varandra.
+
+Hög <b>Cohesion</b> innebär att kod som utför liknande uppgifter är grupperade tillsammans, vilket underlättar förståelse och underhåll. Mätvärden för <b>Cohesion</b> kan vara beroenden mellan moduler eller klasser, antalet metoder per klass eller andelen gemensam funktionalitet i en modul.
+
+Till exempel, i ett spelprojekt, behöver inte fysik modul veta om ett inventory system. Därmed kan du klippa av vissa av delar i småbitar, samt ta bort "bridges" mellan varandra.
+</pre>
+<br>
+        <h3>Coupling</h3>
+<pre>
+<b>Coupling</b> mäter graden av beroenden mellan olika moduler, klasser eller komponenter i koden.
+
+Hög <b>Coupling</b> kan göra koden svår att förstå, ändra och testa. Medans låg <b>Coupling</b> värdet innebär att ändringar i en modul inte har en stor inverkan på andra delar av koden. Mätvärden för <b>Coupling</b> kan vara antalet beroenden, användning av gränssnitt eller API:er, eller graden av direkt kommunikation mellan olika delar av koden.
+
+Till exempel, kan man skapa en manager/singleton skript som finns bara en av (det vill säga global klass). Därmed kan nå manager/singleton överallt. Men manager/singleton har vissa funktioner som den visa upp och tillåter programmera att använda med.
+</pre>
+<br>
+        <h3>CRAP</h3>
+<pre>
+<b>CRAP</b> (Change Risk Analyzer Predictor) fokuserar på att identifiera potentiellt riskfyllda och svåra att maintain:a delar av koden.
+
+<b>CRAP</b> värdet beräknas genom att kombinera komplexitet och testtäckning för att ge en indikation på risknivån i koden. Höga <b>CRAP</b> värden kan vara en varna programmare att undersöka och förbättra sin kod.
+</pre>
+<br>
+    </div>
+    <h2>Phpmetrics</h2>
+<pre>
+Text
+</pre>
+<br>
+    <h2>Scrutinizer</h2>
+<pre>
+Text
+
+Scrutinizer badges, länk till <a href="https://scrutinizer-ci.com/g/robjoh01/mvc-vt23/">scrutinizer</a>.
+
+<img src="{{ asset('https://scrutinizer-ci.com/g/robjoh01/mvc-vt23/badges/build.png?b=main') }}" alt="Build">
+<img src="{{ asset('https://scrutinizer-ci.com/g/robjoh01/mvc-vt23/badges/coverage.png?b=main') }}" alt="Coverage">
+<img src="{{ asset('https://scrutinizer-ci.com/g/robjoh01/mvc-vt23/badges/quality-score.png?b=main') }}" alt="scrutinizer quality score">
+
+</pre>
+<br>
+    <h2>Implemetering och Analys</h2>
+<pre>
+Text
+</pre>
+<br>
+    <h2>Diskussion</h2>
+<pre>
+Text
+</pre>
+<br>
+</main>
+
+{% endblock %}

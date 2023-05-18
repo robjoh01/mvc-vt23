@@ -706,30 +706,30 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Entity-Book.html#method_setImgPath"
         },                {
-            "fqsen": "\\App\\Entity\\Book\u003A\u003A\u0024bookId",
-            "name": "bookId",
+            "fqsen": "\\App\\Entity\\Book\u003A\u003A\u0024id",
+            "name": "id",
             "summary": "",
-            "url": "classes/App-Entity-Book.html#property_bookId"
+            "url": "classes/App-Entity-Book.html#property_id"
         },                {
             "fqsen": "\\App\\Entity\\Book\u003A\u003A\u0024title",
             "name": "title",
             "summary": "",
             "url": "classes/App-Entity-Book.html#property_title"
         },                {
-            "fqsen": "\\App\\Entity\\Book\u003A\u003A\u0024isbn",
-            "name": "isbn",
+            "fqsen": "\\App\\Entity\\Book\u003A\u003A\u0024ISBN",
+            "name": "ISBN",
             "summary": "",
-            "url": "classes/App-Entity-Book.html#property_isbn"
+            "url": "classes/App-Entity-Book.html#property_ISBN"
         },                {
             "fqsen": "\\App\\Entity\\Book\u003A\u003A\u0024author",
             "name": "author",
             "summary": "",
             "url": "classes/App-Entity-Book.html#property_author"
         },                {
-            "fqsen": "\\App\\Entity\\Book\u003A\u003A\u0024imgPath",
-            "name": "imgPath",
+            "fqsen": "\\App\\Entity\\Book\u003A\u003A\u0024img_path",
+            "name": "img_path",
             "summary": "",
-            "url": "classes/App-Entity-Book.html#property_imgPath"
+            "url": "classes/App-Entity-Book.html#property_img_path"
         },                {
             "fqsen": "\\App\\Entity\\Product",
             "name": "Product",
