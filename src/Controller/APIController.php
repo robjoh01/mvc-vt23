@@ -275,12 +275,10 @@ class APIController extends AbstractController
         $books = $bookRepository->findAll();
 
         $data = [];
-        $bookId = "";
 
         foreach ($books as $book) {
             if ($isbn == $book->getIsbn()) {
-                $bookId = $book->getId();
-                $data = $bookRepository->find($bookId);
+                $data = $bookRepository->find($book->getId());
             }
         }
 

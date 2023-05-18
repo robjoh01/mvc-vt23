@@ -816,6 +816,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Repository-ProductRepository.html#method_remove"
         },                {
+            "fqsen": "\\App\\Controller\\WebController",
+            "name": "WebController",
+            "summary": "",
+            "url": "classes/App-Controller-WebController.html"
+        },                {
+            "fqsen": "\\App\\Controller\\WebController\u003A\u003AcardHome\u0028\u0029",
+            "name": "cardHome",
+            "summary": "",
+            "url": "classes/App-Controller-WebController.html#method_cardHome"
+        },                {
             "fqsen": "\\",
             "name": "\\",
             "summary": "",

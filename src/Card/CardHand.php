@@ -44,7 +44,7 @@ class CardHand
         /** @var int */
         $index = array_search($card, $this->cards);
 
-        if ($index !== false) {
+        if (array_key_exists($index, $this->cards)) {
             array_splice($this->cards, $index, 1);
         }
     }
