@@ -67,14 +67,28 @@ Till exempel, kan man skapa en manager/singleton skript som finns bara en av (de
     </div>
     <h2>Phpmetrics</h2>
 <pre>
-Text
+Jag hade lite strul med phpmetrics, samt jag förstå mig inte riktigt på hela rapporten. Däremot förstå mig på att skulle behöver skriva om alla olika kontroller för att uppfylla finnare kodkvalitet i projektet.
+
+Till exempel, klaga den på <b>APIController</b> att den inte följer "single responsibility principle", när den är en "god class". Eftersom jag får många klagomål om olika kontroller och har det är komplexa delar, beslutade jag med mig att undvika för till fället.
+
+Det bästa hade varit att skriva om koden. Däremot hade jag uppskatta att ha den här information från början, så att man inte behöver skriva om all för mycket kod.
 </pre>
 <br>
     <h2>Scrutinizer</h2>
 <pre>
-Text
+<b>Scrutinizer</b> var lättare att kunna förstå sig på.
 
-Scrutinizer badges, länk till <a href="https://scrutinizer-ci.com/g/robjoh01/mvc-vt23/">scrutinizer</a>.
+Jag fick ett värde mellan <b>6.5</b> och <b>7</b>, där många av problem låg utanför <em>src</em> directory. Jag fick då modifera config filen. Och däremed jag fick jag bättre resultat.
+
+Däremot ville <b>Scrutinizer</b> att skulle också göra kontroller till mer testbar kod. Däremot har jag ingen aningen om man skriver testbar kod med kontroller. Där många kontroller är beroende av SessionInterface och Request systemet. Jag såg också att man kunde använda <em>WebTestCase</em>, men den klassen tillhörde symfony och inte <b>phpunit</b>, vilket skapade mer problem.
+
+Så jag slutade med att ignorera alla kontroller filer. Eftersom det var för komplexa samt svåra att göra testfall. Detta tog bort många av <b>CRAP</b> värdet ner och förbättrade resultat.
+
+Jag kunde också ha haft krav kontrollerna och skriver om koden, för att uppnå <b>CRAP</b> värdet och <b>Complexity</b> värdet.
+
+Jag hade då några klasser i <b>Entity</b> directory, vilket skulle kunna behövas testas. Det vill säga att jag kan uppnå <b>Coverage</b> värdet högre.
+
+<b>Scrutinizer badges</b>, länk till <a href="https://scrutinizer-ci.com/g/robjoh01/mvc-vt23/">scrutinizer</a>.
 
 <img src="{{ asset('https://scrutinizer-ci.com/g/robjoh01/mvc-vt23/badges/build.png?b=main') }}" alt="Build">
 <img src="{{ asset('https://scrutinizer-ci.com/g/robjoh01/mvc-vt23/badges/coverage.png?b=main') }}" alt="Coverage">
@@ -82,14 +96,46 @@ Scrutinizer badges, länk till <a href="https://scrutinizer-ci.com/g/robjoh01/mv
 
 </pre>
 <br>
-    <h2>Implemetering och Analys</h2>
+    <h2>Förbättringar och implemetering</h2>
 <pre>
-Text
+<b>Öka kodtäckning</b>
+
+Ett problem som jag stötte på, var att alla <b>entities</b> var ej testade. Vilket var enkelt att göra eftersom klasarna var små och väldigt bra coupled klass.
+
+Jag på började med att skriva olika tester för att testa då <b>product</b> och <b>book</b> klassen. På så sätt kunden jag öka på kodtäckning.
+
+Resultat var mycket bättre där klasserna var testad.
+
+<b>Fixa issues</b>
+
+Jag hade också ett problem med <b>CardHand</b> klassen, där remove funktionen hade lite problem om funktioner som jag kallar, samt vilka argument som jag skickar in i funktionen.
+
+Jag på började med att skriva om funktionen där jag skriv lite information till phpdoc system.
+
+Resultat var lite detsamma, där den fortfarande klagade på argument typen.
+
+<b>Minska komplexiteten i class/metod</b>
+
+Som tidigare jag hade nämnt, så tog jag bort kontrollers från undersökning. Eftersom det var mycket strul, samt svår att testa koden på olika sätt.
+
+Däremot om jag hade fixat kontrollers kunde jag få ett bättre struktur, samt snyggare kodkvalitet.
 </pre>
 <br>
     <h2>Diskussion</h2>
 <pre>
-Text
+<b>Kan man aktivt jobba med kodkvalitet och “clean code” på detta sättet?</b>
+
+Ja, det går väldigt bra om man kan då förstå sig på alla olika delarna. Samt saker som kanske kan undvika när man skriver sin nya kod i framtiden. På så sätt förbättras man som programmera.
+
+<b>Finns det fördelar och kanske nackdelar?</b>
+
+Det finns det. Fördelar är att du skriver "bättre" kod och mer "clean code", vilket kan vara uppskatta när man jobba i projeket och vertyg som ska publiceras.
+
+Dock är nackdelarna är att det mer tid och energi att skriva om sin kod, samt uppfylla alla kravet. Där programmera skriver finnare kod än ej skriva komplett kod. Det vill säga, kod som exekvera rätt information.
+
+<b>Ser du andra möjligheter att jobba mot “clean code”?</b>
+
+"Clean code" är både bra för dig och andra som läser din kod. Att ha "clean code" är ungefär som skriva en uppsatt, där du har punkter, kommatecken och radbrytning. Om man inte ha det i en lång text, kan texten plötsligt blir mycket svår att läsa. Detta skadar inte bara läsaren, men också dig själv som måste läsa texten. På så sätt för att undvika onödigt situationer, man då skriva en snyggare och finnare kod.
 </pre>
 <br>
 </main>

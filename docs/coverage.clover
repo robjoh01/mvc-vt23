@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1684422471">
-  <project timestamp="1684422471">
+<coverage generated="1684439235">
+  <project timestamp="1684439235">
     <file name="/home/mrrobin/dbwebb-kurser/mvc/me/report/src/Card/Card.php">
       <class name="App\Card\Card" namespace="global">
         <metrics complexity="5" methods="5" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="7" elements="12" coveredelements="12"/>
@@ -53,7 +53,7 @@
     </file>
     <file name="/home/mrrobin/dbwebb-kurser/mvc/me/report/src/Card/CardHand.php">
       <class name="App\Card\CardHand" namespace="global">
-        <metrics complexity="14" methods="9" coveredmethods="9" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="20" elements="29" coveredelements="29"/>
+        <metrics complexity="15" methods="9" coveredmethods="9" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="20" elements="29" coveredelements="29"/>
       </class>
       <line num="11" type="method" name="__construct" visibility="public" complexity="3" crap="3" count="11"/>
       <line num="13" type="stmt" count="11"/>
@@ -64,7 +64,7 @@
       <line num="27" type="stmt" count="10"/>
       <line num="34" type="method" name="popCard" visibility="public" complexity="1" crap="1" count="1"/>
       <line num="36" type="stmt" count="1"/>
-      <line num="42" type="method" name="removeCard" visibility="public" complexity="2" crap="2" count="1"/>
+      <line num="42" type="method" name="removeCard" visibility="public" complexity="3" crap="3" count="1"/>
       <line num="45" type="stmt" count="1"/>
       <line num="47" type="stmt" count="1"/>
       <line num="48" type="stmt" count="1"/>

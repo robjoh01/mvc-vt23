@@ -41,10 +41,10 @@ class CardHand
      */
     public function removeCard(Card $card): void
     {
-        /** @var int */
+        /** @var int|string|false */
         $index = array_search($card, $this->cards);
 
-        if (array_key_exists($index, $this->cards)) {
+        if ($index !== false && is_int($index)) {
             array_splice($this->cards, $index, 1);
         }
     }
