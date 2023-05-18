@@ -114,7 +114,10 @@
             "rm -rf vendor composer.lock"
         ],
         "phpunit": "XDEBUG_MODE=coverage vendor/bin/phpunit",
-        "phpmetrics": "tools/phpmetrics/vendor/bin/phpmetrics --config=phpmetrics.json"
+        "phpmetrics": [
+            "Composer\\Config::disableProcessTimeout",
+            "tools/phpmetrics/vendor/bin/phpmetrics --config=phpmetrics.json"
+        ]
     },
     "conflict": {
         "symfony/symfony": "*"
