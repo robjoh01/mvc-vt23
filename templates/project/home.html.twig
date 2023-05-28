@@ -1,0 +1,18 @@
+{% extends "proj_base.html.twig" %}
+
+{% block title %}Home - Poker Square{% endblock %}
+
+{% block proj %}
+<pre>
+Här kan man spela mot sig själv och samla poängen i en highscorelista. Man placerar ut korten i ett rutnät och försöker få så höga pokerhänder som möjligt i varje riktning.
+
+Du kan läsa mer om “<a href="https://en.wikipedia.org/wiki/Poker_squares" target="_blank">Poker Square</a>”.
+</pre>
+<center>
+    <form class="form" method="POST" action="{{ path('project_play') }}">
+        <fieldset>
+            <input type="submit" name="doIt" value="{{ isPlaying ? 'Fortsätt spelet' : 'Starta spelet' }}">
+        </fieldset>
+    </form>
+</center>
+{% endblock %}

@@ -96,6 +96,52 @@ class CardHand
     }
 
     /**
+     * @return array<int>
+     */
+    public function getScoreArray(): array
+    {
+        $array = [];
+
+        foreach ($this->cards as $card) {
+            $array[] = $card->getScore();
+        }
+
+        return $array;
+    }
+
+    /**
+     * Get an array of all the suits in the hand.
+     *
+     * @return string[]
+     */
+    public function getSuitArray(): array
+    {
+        $array = [];
+
+        foreach ($this->cards as $card) {
+            $array[] = $card->getSuit();
+        }
+
+        return $array;
+    }
+
+    /**
+     * Get an array of all the values in the hand.
+     *
+     * @return string[]
+     */
+    public function getValueArray(): array
+    {
+        $array = [];
+
+        foreach ($this->cards as $card) {
+            $array[] = $card->getValue();
+        }
+
+        return $array;
+    }
+
+    /**
      * Clear all cards from the hand.
      */
     public function clear(): void

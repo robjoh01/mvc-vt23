@@ -1,0 +1,32 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+<main class="main">
+{{ include('flash.html.twig') }}
+    <center>
+        <navbar class="proj-nav">
+            <ul>
+                <li>
+                    <a href="{{ path('project') }}">
+                        <span class="un">Startsida</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('project_api') }}">
+                        <span class="un">API</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('project_about') }}">
+                        <span class="un">Om projeket</span>
+                    </a>
+                </li>
+            </ul>
+        </navbar>
+    </center>
+    <br>
+    <div>
+        {% block proj %}{% endblock %}
+    </div>
+</main>
+{% endblock %}

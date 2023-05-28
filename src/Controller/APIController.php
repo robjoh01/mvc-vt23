@@ -7,7 +7,9 @@ use Exception;
 use App\Card\Card;
 use App\Card\CardHand;
 use App\Card\DeckOfCards;
+
 use App\Game\Game;
+use App\Game\PokerGame;
 
 use App\Repository\BookRepository;
 use App\Entity\Book;
@@ -285,6 +287,127 @@ class APIController extends AbstractController
         $response = $this->json($data);
         $response->setEncodingOptions(
             $response->getEncodingOptions() | JSON_PRETTY_PRINT
+        );
+
+        return $response;
+    }
+
+    #[Route('api/project/game', name: 'api_project_game')]
+    public function getCurrentStatusOfProjectGame(
+        SessionInterface $session
+    ): Response {
+        /** @var PokerGame */
+        $game = $session->get("game", null);
+
+        $gameData = $game->getData();
+
+        /** @var string[] */
+        $boardAsString = [];
+
+        /** @var array<array<Card|null>> */
+        $board = $gameData["board"];
+
+        foreach ($board as $row) {
+            foreach ($row as $card) {
+                if ($card !== null) {
+                    $boardAsString[] = $card->getAsString();
+                } else {
+                    $boardAsString[] = "NULL";
+                }
+            }
+        }
+
+        /** @var Card */
+        $selectedCard = $gameData["selectedCard"];
+
+        $hasInitialize = $session->get("has_initialize", false);
+
+        $rowPoints = [];
+        $columnPoints = [];
+
+        for ($row = 0; $row < 5; $row++) {
+            $rowPoints[] = $game->getRowPoints($row);
+        }
+
+        for ($column = 0; $column < 5; $column++) {
+            $columnPoints[] = $game->getColumnPoints($column);
+        }
+
+        $data = [
+            "has_initialize" => $hasInitialize,
+            "board" => $boardAsString,
+            "selected_card" => $selectedCard->getAsString(),
+            "row_points" => $rowPoints,
+            "column_points" => $columnPoints,
+            "total_points" => $game->getTotalPoints(),
+            "start_date" => $session->get("start_date"),
+            "end_date" => $session->get("end_date"),
+            "diff_date" => $session->get("diff_date"),
+        ];
+
+        $response = new JsonResponse($data);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE
+        );
+
+        return $response;
+    }
+
+    #[Route('api/project/game/points', name: 'api_project_game_points')]
+    public function getCurrentStatusOfProjectGamePoints(
+        SessionInterface $session
+    ): Response {
+        /** @var PokerGame */
+        $game = $session->get("game", null);
+
+        $data = [
+            "total_points" => $game->getTotalPoints(),
+        ];
+
+        $response = new JsonResponse($data);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE
+        );
+
+        return $response;
+    }
+
+    private function getTotalHours(\DateInterval $di): int
+    {
+        return ($di->d * 24) + $di->h + $di->i / 60;
+    }
+
+    private function getTotalMinutes(\DateInterval $di): int
+    {
+        return ($di->d * 24 * 60) + ($di->h * 60) + $di->i;
+    }
+
+    private function getTotalSeconds(\DateInterval $di): int
+    {
+        return ($di->d * 24 * 60 * 60) + ($di->h * 60 * 60) + ($di->i * 60) + $di->s;
+    }
+
+    #[Route('api/project/game/date', name: 'api_project_game_date')]
+    public function getCurrentStatusOfProjectGameDate(
+        SessionInterface $session
+    ): Response {
+        /** @var PokerGame */
+        $game = $session->get("game", null);
+
+        /** @var \DateInterval */
+        $diffDate = $session->get("diff_date", new \DateInterval("P0D"));
+
+        $data = [
+            "start_date" => $session->get("start_date"),
+            "end_date" => $session->get("end_date"),
+            "play_hours" => $this->getTotalHours($diffDate),
+            "play_minutes" => $this->getTotalMinutes($diffDate),
+            "play_seconds" => $this->getTotalSeconds($diffDate),
+        ];
+
+        $response = new JsonResponse($data);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE
         );
 
         return $response;

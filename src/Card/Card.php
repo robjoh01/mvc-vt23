@@ -8,7 +8,7 @@ class Card
     protected string $value;
     protected int $score;
 
-    public function __construct(string $suit, string $value, int $score)
+    public function __construct(string $suit, string $value, int $score = 0)
     {
         $this->suit = $suit;
         $this->value = $value;

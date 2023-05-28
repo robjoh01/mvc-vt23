@@ -1,0 +1,79 @@
+{% extends "proj_base.html.twig" %}
+
+{% block title %}Playing - Poker Square{% endblock %}
+
+{% block proj %}
+<div class="poker-container">
+    <div class="poker-panel">
+        <form class="form" action="{{ url("project_add_card") }}" method="POST">
+            <fieldset class="poker-fieldset">
+                <legend>Place the card on the board</legend>
+                <img class="card-board-graphic" src="{{ asset(selectedCard.getImagePath()) }}" alt="{{ selectedCard.getImageName() }}" draggable="false">
+                <label for="row-select">Row:</label>
+                <select id="row-select" name="row">
+                    {% for row in 1..5 %}
+                        <option value="{{ row }}">{{ row }}</option>
+                    {% endfor %}
+                </select>
+                <label for="column-select">Column:</label>
+                <select id="column-select" name="column">
+                    {% for column in 1..5 %}
+                        <option value="{{ column }}">{{ column }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit">Add</button>
+            </fieldset>
+        </form>
+    </div>
+
+    <div class="poker-table-wrapper">
+        <table class="table poker-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    {% for column in 1..5 %}
+                        <th>{{ column }}</th>
+                    {% endfor %}
+                    <th>💯</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rowIndex, row in board %}
+                    <tr>
+                        <th>{{ rowIndex + 1 }}</th>
+                        {% for columnIndex, card in row %}
+                            <td>
+                                {% if card is null %}
+                                    {# <img class="card-board-graphic" src="{{ asset('img/cards/Joker Black.png') }}" alt="Empty Card" draggable="false"> #}
+                                {% else %}
+                                    <img class="card-board-graphic" src="{{ asset(card.getImagePath()) }}" alt="{{ card.getImageName() }}" draggable="false">
+                                {% endif %}
+                            </td>
+                        {% endfor %}
+                        <th>
+                            {{ game.getRowHandRank(rowIndex) }}
+                        </th>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <th>💯</th>
+                    {% for columnIndex, _ in board[0] %}
+                        <th>
+                            {{ game.getColumnHandRank(columnIndex) }}
+                        </th>
+                    {% endfor %}
+                    <th>{{ game.getTotalPoints() }} [TOTAL]</th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<hr>
+
+<div class="poker-section">
+    <a class="a-btn" href="{{ url("project_end") }}">
+        <button>End game</button>
+    </a>
+</div>
+{% endblock %}

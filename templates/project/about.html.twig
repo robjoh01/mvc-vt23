@@ -1,0 +1,15 @@
+{% extends "proj_base.html.twig" %}
+
+{% block title %}About - Poker Square{% endblock %}
+
+{% block proj %}
+<main class="main">
+<pre>
+Projektet “Poker Square” är en implementation av pokerspelet i PHP med hjälp av Symfony-ramverket. Spelet Poker Square är en variant av poker där spelarna försöker skapa den bästa möjliga handen genom att placera ut kort på en spelplan med fem rader och fem kolumner. Varje rad, kolumn och diagonal utvärderas separat för att avgöra om de utgör en vinnande hand enligt pokerreglerna.
+
+Du kan läsa mer om “<a href="https://en.wikipedia.org/wiki/Poker_squares" target="_blank">Poker Square</a>”.
+
+I detta projekt finns det olika komponenter och funktioner för att hantera kort, kortlekar och spellogik. Det finns en <code>DeckOfCards</code>-klass för att hantera en kortlek, en <code>PokerHand</code>-klass för att hantera en spelares hand och en <code>PokerGame</code>-klass för att hantera själva spelet. <code>PokerGame</code>-klassen innehåller metoder för att placera ut kort på spelplanen, kontrollera vinnande händer och beräkna poäng baserat på de vinnande kombinationerna.
+</pre>
+</main>
+{% endblock %}
