@@ -269,7 +269,7 @@ class APIController extends AbstractController
         return $response;
     }
 
-    #[Route('api/library/book/{isbn}', name: 'api_library_book')]
+    #[Route('/api/library/book/{isbn}', name: 'api_library_book')]
     public function getLibraryBookFromISBN(
         BookRepository $bookRepository,
         string $isbn,
@@ -292,7 +292,7 @@ class APIController extends AbstractController
         return $response;
     }
 
-    #[Route('api/project/game', name: 'api_project_game')]
+    #[Route('/api/project/game', name: 'api_project_game')]
     public function getCurrentStatusOfProjectGame(
         SessionInterface $session
     ): Response {
@@ -326,11 +326,11 @@ class APIController extends AbstractController
         $columnPoints = [];
 
         for ($row = 0; $row < 5; $row++) {
-            $rowPoints[] = $game->getRowPoints($row);
+            $rowPoints[] = $game->getPointsFromHandRank($game->getRowHandRank($row));
         }
 
         for ($column = 0; $column < 5; $column++) {
-            $columnPoints[] = $game->getColumnPoints($column);
+            $columnPoints[] = $game->getPointsFromHandRank($game->getColumnHandRank($column));
         }
 
         $data = [
@@ -339,7 +339,8 @@ class APIController extends AbstractController
             "selected_card" => $selectedCard->getAsString(),
             "row_points" => $rowPoints,
             "column_points" => $columnPoints,
-            "total_points" => $game->getTotalPoints(),
+            "total_points" => $game->getTotalHandRankPoints(),
+            "isCompleted" => $game->isCompleted(),
             "start_date" => $session->get("start_date"),
             "end_date" => $session->get("end_date"),
             "diff_date" => $session->get("diff_date"),
@@ -353,7 +354,7 @@ class APIController extends AbstractController
         return $response;
     }
 
-    #[Route('api/project/game/points', name: 'api_project_game_points')]
+    #[Route('/api/project/game/points', name: 'api_project_game_points')]
     public function getCurrentStatusOfProjectGamePoints(
         SessionInterface $session
     ): Response {
@@ -361,7 +362,8 @@ class APIController extends AbstractController
         $game = $session->get("game", null);
 
         $data = [
-            "total_points" => $game->getTotalPoints(),
+            "total_points_based_on_hand_rankings" => $game->getTotalHandRankPoints(),
+            "total_points_based_on_cards_itself" => $game->getTotalPoints(),
         ];
 
         $response = new JsonResponse($data);
@@ -387,13 +389,10 @@ class APIController extends AbstractController
         return ($di->d * 24 * 60 * 60) + ($di->h * 60 * 60) + ($di->i * 60) + $di->s;
     }
 
-    #[Route('api/project/game/date', name: 'api_project_game_date')]
+    #[Route('/api/project/game/date', name: 'api_project_game_date')]
     public function getCurrentStatusOfProjectGameDate(
         SessionInterface $session
     ): Response {
-        /** @var PokerGame */
-        $game = $session->get("game", null);
-
         /** @var \DateInterval */
         $diffDate = $session->get("diff_date", new \DateInterval("P0D"));
 
@@ -404,6 +403,131 @@ class APIController extends AbstractController
             "play_minutes" => $this->getTotalMinutes($diffDate),
             "play_seconds" => $this->getTotalSeconds($diffDate),
         ];
+
+        $response = new JsonResponse($data);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE
+        );
+
+        return $response;
+    }
+
+    #[Route('/api/project/game/rows/{row}', name: 'api_project_game_row')]
+    public function getCurrentPointForRow(
+        SessionInterface $session,
+        int $row,
+    ): Response {
+        /** @var PokerGame */
+        $game = $session->get("game", null);
+
+        if ($row < 0 || $row > 4) {
+            throw new Exception("Row index is out of bounds!");
+        }
+
+        $handRank = $game->getRowHandRank($row);
+        $points = $game->getPointsFromHandRank($handRank);
+
+        $data = [
+            "points" => $points,
+        ];
+
+        $response = new JsonResponse($data);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE
+        );
+
+        return $response;
+    }
+
+    #[Route('/api/project/game/columns/{column}', name: 'api_project_game_column')]
+    public function getCurrentPointForColumn(
+        SessionInterface $session,
+        int $column,
+    ): Response {
+        /** @var PokerGame */
+        $game = $session->get("game", null);
+
+        if ($column < 0 || $column > 4) {
+            throw new Exception("Column index is out of bounds!");
+        }
+
+        $handRank = $game->getColumnHandRank($column);
+        $points = $game->getPointsFromHandRank($handRank);
+
+        $data = [
+            "points" => $points,
+        ];
+
+        $response = new JsonResponse($data);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE
+        );
+
+        return $response;
+    }
+
+    #[Route("/api/project/game/draw/", name: "api_project_game_draw_card", methods: ['POST'])]
+    public function drawRandomCardFromPokerGame(
+        Request $request,
+        SessionInterface $session
+    ): Response {
+        $row = $request->request->get('row_index');
+        $column = $request->request->get('column_index');
+
+        if ($row < 0 || $row > 5) {
+            throw new Exception("Row cannot be above 5 or below 0!");
+        }
+
+        if ($column < 0 || $column > 5) {
+            throw new Exception("Column cannot be above 5 or below 0!");
+        }
+
+        /** @var PokerGame */
+        $game = $session->get("game", null);
+
+        $gameData = $game->getData();
+
+        /** @var array<array<Card|null>> */
+        $board = $gameData["board"];
+
+        /** @var Card */
+        $selectedCard = $game->peekSelectedCard();
+
+        $message = "";
+
+        if ($game->hasBoardElement($row, $column)) {
+            $message = "Position is already taken! Chose another position.";
+        } else {
+            $game->popSelectedCard();
+            $game->setBoardElement($row, $column, $selectedCard);
+            $message = "Card has successfully been added!";
+        }
+
+        $data = [
+            "selected_card" => $selectedCard->getAsString(),
+            "message" => $message,
+            "board" => [
+                "rows" => [],
+                "columns" => []
+            ]
+        ];
+
+        // Iterate over each row in the board
+        for ($row = 0; $row < count($board); $row++) {
+            $rowKey = "row" . sprintf("%02d", $row + 1);
+            $data["board"]["rows"][$rowKey] = [];
+
+            // Iterate over each column in the row
+            for ($column = 0; $column < count($board[$row]); $column++) {
+                $columnKey = "column" . sprintf("%02d", $column + 1);
+                $card = $board[$row][$column];
+                $value = is_null($card) ? null : $card->getAsString();
+
+                // Add the card value to the corresponding row and column
+                $data["board"]["rows"][$rowKey][] = $value;
+                $data["board"]["columns"][$columnKey][] = $value;
+            }
+        }
 
         $response = new JsonResponse($data);
         $response->setEncodingOptions(

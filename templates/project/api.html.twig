@@ -2,18 +2,14 @@
 
 {% block title %}API - Poker Square{% endblock %}
 
-{# Skapa ett JSON API till dit projekt och presentera det i sidan proj/api.
-
-Skapa minst 5 olika JSON routes varav minst en skall vara en POST route.
-
-I sidan skall man kunna klicka på samtliga länkar/knappar för att testa ditt API. #}
-
 {% block proj %}
 <main class="main">
     <h1>Projektets API</h1>
     <p>Se spelets information, <a href="{{ path('api_project_game') }}">länk till API</a>.</p>
     <p>Se spelets poäng system, <a href="{{ path('api_project_game_points') }}">länk till API</a>.</p>
     <p>Se spelets tidtagare, <a href="{{ path('api_project_game_date') }}">länk till API</a>.</p>
+    <p>Se poängen för en viss rad, <a href="{{ path('api_project_game_row', { "row": 4}) }}">länk till API</a>.</p>
+    <p>Se poängen för en viss kolumn, <a href="{{ path('api_project_game_column', { "column": 2 }) }}">länk till API</a>.</p>
 
     <form class="form" method="POST" action="{{ placeCardURL }}">
         <fieldset>
@@ -23,24 +19,6 @@ I sidan skall man kunna klicka på samtliga länkar/knappar för att testa ditt 
             <label for="column_index">Kolumn [Index]</label>
             <input id="column_index" type="number" name="column_index" min="0" max="4" value="0" required>
             <input type="submit" value="Placera kortet">
-        </fieldset>
-    </form>
-
-    <form class="form" method="POST" action="{{ rowPointURL }}">
-        <fieldset>
-           <legend>Se poäng för en rad</legend>
-            <label for="row_index">Rad [Index]</label>
-            <input id="row_index" type="number" name="row_index" min="0" max="4" value="0" required>
-            <input type="submit" value="Visa poängen">
-        </fieldset>
-    </form>
-
-    <form class="form" method="POST" action="{{ columnPointURL }}">
-        <fieldset>
-           <legend>Se poäng för en kolumn</legend>
-            <label for="column_index">Kolumn [Index]</label>
-            <input id="column_index" type="number" name="column_index" min="0" max="4" value="0" required>
-            <input type="submit" value="Visa poängen">
         </fieldset>
     </form>
 </main>

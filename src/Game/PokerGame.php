@@ -10,6 +10,7 @@ use App\Card\CardHand;
 use App\Card\DeckOfCards;
 
 use App\Poker\PokerRanker;
+use App\Poker\PokerRank;
 
 class PokerGame
 {
@@ -41,20 +42,19 @@ class PokerGame
 
     public function popSelectedCard(): Card
     {
-        $card = $this->selectedCard;
+        $temp = $this->selectedCard;
 
         /** @var Card */
         $card =  $this->deck->draw();
 
         $this->selectedCard = $card;
 
-        return $card;
+        return $temp;
     }
 
     public function peekSelectedCard(): Card
     {
         return $this->selectedCard;
-        ;
     }
 
     public function getBoardElement(int $row, int $column): Card|null
@@ -62,7 +62,7 @@ class PokerGame
         return $this->board[$row][$column];
     }
 
-    public function setBoardElement(int $row, int $column, Card $card): void
+    public function setBoardElement(int $row, int $column, Card|null $card): void
     {
         $this->board[$row][$column] = $card;
     }
@@ -70,6 +70,22 @@ class PokerGame
     public function hasBoardElement(int $row, int $column): bool
     {
         return !is_null($this->getBoardElement($row, $column));
+    }
+
+    public function isCompleted(): bool
+    {
+        $rows = count($this->board);
+        $columns = count($this->board[0]);
+
+        for ($row = 0; $row < $rows; $row++) {
+            for ($column = 0; $column < $columns; $column++) {
+                if (!$this->hasBoardElement($row, $column)) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 
     public function getRowHandRank(int $row): string
@@ -106,6 +122,65 @@ class PokerGame
         }
 
         return PokerRanker::getHandRank($hand);
+    }
+
+    public function getTotalHandRankPoints(): int
+    {
+        $totalPoints = 0;
+
+        // Loop through each row
+        foreach ($this->board as $rowIndex => $row) {
+            $rowHandRank = $this->getRowHandRank($rowIndex);
+            $rowPoints = $this->getPointsFromHandRank($rowHandRank);
+            $totalPoints += $rowPoints;
+        }
+
+        // Loop through each column
+        $columnsCount = count($this->board[0]);
+
+        for ($column = 0; $column < $columnsCount; $column++) {
+            $columnHandRank = $this->getColumnHandRank($column);
+            $columnPoints = $this->getPointsFromHandRank($columnHandRank);
+            $totalPoints += $columnPoints;
+        }
+
+        return $totalPoints;
+    }
+
+    public function getPointsFromHandRank(string $handRank): int
+    {
+        switch ($handRank) {
+            default:
+            case PokerRank::HIGH_CARD:
+                return 0;
+
+            case PokerRank::ONE_PAIR:
+                return 2;
+
+            case PokerRank::TWO_PAIR:
+                return 5;
+
+            case PokerRank::THREE_OF_A_KIND:
+                return 10;
+
+            case PokerRank::STRAIGHT:
+                return 15;
+
+            case PokerRank::FLUSH:
+                return 20;
+
+            case PokerRank::FULL_HOUSE:
+                return 25;
+
+            case PokerRank::FOUR_OF_A_KIND:
+                return 50;
+
+            case PokerRank::STRAIGHT_FLUSH:
+                return 75;
+
+            case PokerRank::ROYAL_FLUSH:
+                return 100;
+        }
     }
 
     public function getRowAndColumnPoints(int $row, int $column): mixed
@@ -163,7 +238,9 @@ class PokerGame
         return $points;
     }
 
-    /** @return Mixed[] */
+    /**
+     * @return Mixed[]
+     */
     public function getData(): array
     {
         return [

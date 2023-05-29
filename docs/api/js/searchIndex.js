@@ -116,6 +116,21 @@ Search.appendIndex(
             "summary": "Get\u0020current\u0020score\u0020of\u0020all\u0020cards\u0020combined\u0020in\u0020the\u0020hand.",
             "url": "classes/App-Card-CardHand.html#method_getScore"
         },                {
+            "fqsen": "\\App\\Card\\CardHand\u003A\u003AgetScoreArray\u0028\u0029",
+            "name": "getScoreArray",
+            "summary": "",
+            "url": "classes/App-Card-CardHand.html#method_getScoreArray"
+        },                {
+            "fqsen": "\\App\\Card\\CardHand\u003A\u003AgetSuitArray\u0028\u0029",
+            "name": "getSuitArray",
+            "summary": "Get\u0020an\u0020array\u0020of\u0020all\u0020the\u0020suits\u0020in\u0020the\u0020hand.",
+            "url": "classes/App-Card-CardHand.html#method_getSuitArray"
+        },                {
+            "fqsen": "\\App\\Card\\CardHand\u003A\u003AgetValueArray\u0028\u0029",
+            "name": "getValueArray",
+            "summary": "Get\u0020an\u0020array\u0020of\u0020all\u0020the\u0020values\u0020in\u0020the\u0020hand.",
+            "url": "classes/App-Card-CardHand.html#method_getValueArray"
+        },                {
             "fqsen": "\\App\\Card\\CardHand\u003A\u003Aclear\u0028\u0029",
             "name": "clear",
             "summary": "Clear\u0020all\u0020cards\u0020from\u0020the\u0020hand.",
@@ -265,6 +280,21 @@ Search.appendIndex(
             "name": "getCurrentStatusOfProjectGameDate",
             "summary": "",
             "url": "classes/App-Controller-APIController.html#method_getCurrentStatusOfProjectGameDate"
+        },                {
+            "fqsen": "\\App\\Controller\\APIController\u003A\u003AgetCurrentPointForRow\u0028\u0029",
+            "name": "getCurrentPointForRow",
+            "summary": "",
+            "url": "classes/App-Controller-APIController.html#method_getCurrentPointForRow"
+        },                {
+            "fqsen": "\\App\\Controller\\APIController\u003A\u003AgetCurrentPointForColumn\u0028\u0029",
+            "name": "getCurrentPointForColumn",
+            "summary": "",
+            "url": "classes/App-Controller-APIController.html#method_getCurrentPointForColumn"
+        },                {
+            "fqsen": "\\App\\Controller\\APIController\u003A\u003AdrawRandomCardFromPokerGame\u0028\u0029",
+            "name": "drawRandomCardFromPokerGame",
+            "summary": "",
+            "url": "classes/App-Controller-APIController.html#method_drawRandomCardFromPokerGame"
         },                {
             "fqsen": "\\App\\Controller\\CardController",
             "name": "CardController",
@@ -931,6 +961,31 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Game-PokerGame.html#method_hasBoardElement"
         },                {
+            "fqsen": "\\App\\Game\\PokerGame\u003A\u003AisCompleted\u0028\u0029",
+            "name": "isCompleted",
+            "summary": "",
+            "url": "classes/App-Game-PokerGame.html#method_isCompleted"
+        },                {
+            "fqsen": "\\App\\Game\\PokerGame\u003A\u003AgetRowHandRank\u0028\u0029",
+            "name": "getRowHandRank",
+            "summary": "",
+            "url": "classes/App-Game-PokerGame.html#method_getRowHandRank"
+        },                {
+            "fqsen": "\\App\\Game\\PokerGame\u003A\u003AgetColumnHandRank\u0028\u0029",
+            "name": "getColumnHandRank",
+            "summary": "",
+            "url": "classes/App-Game-PokerGame.html#method_getColumnHandRank"
+        },                {
+            "fqsen": "\\App\\Game\\PokerGame\u003A\u003AgetTotalHandRankPoints\u0028\u0029",
+            "name": "getTotalHandRankPoints",
+            "summary": "",
+            "url": "classes/App-Game-PokerGame.html#method_getTotalHandRankPoints"
+        },                {
+            "fqsen": "\\App\\Game\\PokerGame\u003A\u003AgetPointsFromHandRank\u0028\u0029",
+            "name": "getPointsFromHandRank",
+            "summary": "",
+            "url": "classes/App-Game-PokerGame.html#method_getPointsFromHandRank"
+        },                {
             "fqsen": "\\App\\Game\\PokerGame\u003A\u003AgetRowAndColumnPoints\u0028\u0029",
             "name": "getRowAndColumnPoints",
             "summary": "",
@@ -971,6 +1026,126 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Game-PokerGame.html#property_board"
         },                {
+            "fqsen": "\\App\\Poker\\PokerRank",
+            "name": "PokerRank",
+            "summary": "",
+            "url": "classes/App-Poker-PokerRank.html"
+        },                {
+            "fqsen": "\\App\\Poker\\PokerRank\u003A\u003AHIGH_CARD",
+            "name": "HIGH_CARD",
+            "summary": "",
+            "url": "classes/App-Poker-PokerRank.html#constant_HIGH_CARD"
+        },                {
+            "fqsen": "\\App\\Poker\\PokerRank\u003A\u003AONE_PAIR",
+            "name": "ONE_PAIR",
+            "summary": "",
+            "url": "classes/App-Poker-PokerRank.html#constant_ONE_PAIR"
+        },                {
+            "fqsen": "\\App\\Poker\\PokerRank\u003A\u003ATWO_PAIR",
+            "name": "TWO_PAIR",
+            "summary": "",
+            "url": "classes/App-Poker-PokerRank.html#constant_TWO_PAIR"
+        },                {
+            "fqsen": "\\App\\Poker\\PokerRank\u003A\u003ATHREE_OF_A_KIND",
+            "name": "THREE_OF_A_KIND",
+            "summary": "",
+            "url": "classes/App-Poker-PokerRank.html#constant_THREE_OF_A_KIND"
+        },                {
+            "fqsen": "\\App\\Poker\\PokerRank\u003A\u003ASTRAIGHT",
+            "name": "STRAIGHT",
+            "summary": "",
+            "url": "classes/App-Poker-PokerRank.html#constant_STRAIGHT"
+        },                {
+            "fqsen": "\\App\\Poker\\PokerRank\u003A\u003AFLUSH",
+            "name": "FLUSH",
+            "summary": "",
+            "url": "classes/App-Poker-PokerRank.html#constant_FLUSH"
+        },                {
+            "fqsen": "\\App\\Poker\\PokerRank\u003A\u003AFULL_HOUSE",
+            "name": "FULL_HOUSE",
+            "summary": "",
+            "url": "classes/App-Poker-PokerRank.html#constant_FULL_HOUSE"
+        },                {
+            "fqsen": "\\App\\Poker\\PokerRank\u003A\u003AFOUR_OF_A_KIND",
+            "name": "FOUR_OF_A_KIND",
+            "summary": "",
+            "url": "classes/App-Poker-PokerRank.html#constant_FOUR_OF_A_KIND"
+        },                {
+            "fqsen": "\\App\\Poker\\PokerRank\u003A\u003ASTRAIGHT_FLUSH",
+            "name": "STRAIGHT_FLUSH",
+            "summary": "",
+            "url": "classes/App-Poker-PokerRank.html#constant_STRAIGHT_FLUSH"
+        },                {
+            "fqsen": "\\App\\Poker\\PokerRank\u003A\u003AROYAL_FLUSH",
+            "name": "ROYAL_FLUSH",
+            "summary": "",
+            "url": "classes/App-Poker-PokerRank.html#constant_ROYAL_FLUSH"
+        },                {
+            "fqsen": "\\App\\Poker\\PokerRanker",
+            "name": "PokerRanker",
+            "summary": "",
+            "url": "classes/App-Poker-PokerRanker.html"
+        },                {
+            "fqsen": "\\App\\Poker\\PokerRanker\u003A\u003AgetHandRank\u0028\u0029",
+            "name": "getHandRank",
+            "summary": "Get\u0020the\u0020rank\u0020of\u0020the\u0020given\u0020hand",
+            "url": "classes/App-Poker-PokerRanker.html#method_getHandRank"
+        },                {
+            "fqsen": "\\App\\Poker\\PokerRanker\u003A\u003AisRoyalFlush\u0028\u0029",
+            "name": "isRoyalFlush",
+            "summary": "Check\u0020if\u0020the\u0020given\u0020hand\u0020is\u0020a\u0020Royal\u0020Flush",
+            "url": "classes/App-Poker-PokerRanker.html#method_isRoyalFlush"
+        },                {
+            "fqsen": "\\App\\Poker\\PokerRanker\u003A\u003AisStraightFlush\u0028\u0029",
+            "name": "isStraightFlush",
+            "summary": "Check\u0020if\u0020the\u0020given\u0020hand\u0020is\u0020a\u0020Straight\u0020Flush",
+            "url": "classes/App-Poker-PokerRanker.html#method_isStraightFlush"
+        },                {
+            "fqsen": "\\App\\Poker\\PokerRanker\u003A\u003AisFourOfAKind\u0028\u0029",
+            "name": "isFourOfAKind",
+            "summary": "Check\u0020if\u0020the\u0020given\u0020hand\u0020has\u0020four\u0020of\u0020a\u0020kind",
+            "url": "classes/App-Poker-PokerRanker.html#method_isFourOfAKind"
+        },                {
+            "fqsen": "\\App\\Poker\\PokerRanker\u003A\u003AisFullHouse\u0028\u0029",
+            "name": "isFullHouse",
+            "summary": "Check\u0020if\u0020the\u0020given\u0020hand\u0020has\u0020a\u0020full\u0020house",
+            "url": "classes/App-Poker-PokerRanker.html#method_isFullHouse"
+        },                {
+            "fqsen": "\\App\\Poker\\PokerRanker\u003A\u003AisFlush\u0028\u0029",
+            "name": "isFlush",
+            "summary": "Check\u0020if\u0020the\u0020given\u0020hand\u0020has\u0020a\u0020flush",
+            "url": "classes/App-Poker-PokerRanker.html#method_isFlush"
+        },                {
+            "fqsen": "\\App\\Poker\\PokerRanker\u003A\u003AisStraight\u0028\u0029",
+            "name": "isStraight",
+            "summary": "Check\u0020if\u0020the\u0020given\u0020hand\u0020is\u0020a\u0020straight",
+            "url": "classes/App-Poker-PokerRanker.html#method_isStraight"
+        },                {
+            "fqsen": "\\App\\Poker\\PokerRanker\u003A\u003AisConsecutive\u0028\u0029",
+            "name": "isConsecutive",
+            "summary": "Check\u0020if\u0020an\u0020array\u0020of\u0020five\u0020elements\u0020is\u0020consecutive",
+            "url": "classes/App-Poker-PokerRanker.html#method_isConsecutive"
+        },                {
+            "fqsen": "\\App\\Poker\\PokerRanker\u003A\u003AisThreeOfAKind\u0028\u0029",
+            "name": "isThreeOfAKind",
+            "summary": "Check\u0020if\u0020the\u0020given\u0020hand\u0020has\u0020three\u0020of\u0020a\u0020kind",
+            "url": "classes/App-Poker-PokerRanker.html#method_isThreeOfAKind"
+        },                {
+            "fqsen": "\\App\\Poker\\PokerRanker\u003A\u003AisTwoPair\u0028\u0029",
+            "name": "isTwoPair",
+            "summary": "Check\u0020if\u0020the\u0020given\u0020hand\u0020has\u0020two\u0020pairs",
+            "url": "classes/App-Poker-PokerRanker.html#method_isTwoPair"
+        },                {
+            "fqsen": "\\App\\Poker\\PokerRanker\u003A\u003AisOnePair\u0028\u0029",
+            "name": "isOnePair",
+            "summary": "Check\u0020if\u0020the\u0020given\u0020hand\u0020has\u0020one\u0020pair",
+            "url": "classes/App-Poker-PokerRanker.html#method_isOnePair"
+        },                {
+            "fqsen": "\\App\\Poker\\PokerRanker\u003A\u003AareAllElementsDuplicates\u0028\u0029",
+            "name": "areAllElementsDuplicates",
+            "summary": "",
+            "url": "classes/App-Poker-PokerRanker.html#method_areAllElementsDuplicates"
+        },                {
             "fqsen": "\\",
             "name": "\\",
             "summary": "",
@@ -1005,6 +1180,11 @@ Search.appendIndex(
             "name": "App",
             "summary": "",
             "url": "namespaces/app.html"
+        },                {
+            "fqsen": "\\App\\Poker",
+            "name": "Poker",
+            "summary": "",
+            "url": "namespaces/app-poker.html"
         },                {
             "fqsen": "\\App\\Repository",
             "name": "Repository",

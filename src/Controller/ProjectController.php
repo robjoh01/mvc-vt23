@@ -32,9 +32,7 @@ class ProjectController extends AbstractController
     public function projectAPI(): Response
     {
         $data = [
-            "placeCardURL" => $this->generateUrl('api_deck'),
-            "rowPointURL" => $this->generateUrl('api_deck'),
-            "columnPointURL" => $this->generateUrl('api_deck'),
+            "placeCardURL" => $this->generateUrl('api_project_game_draw_card'),
         ];
 
         return $this->render('project/api.html.twig', $data);
@@ -63,7 +61,6 @@ class ProjectController extends AbstractController
     public function projectEnd(
         SessionInterface $session
     ): Response {
-
         $session->set("has_initialize", false);
         $session->set("end_date", date('Y-m-d H:i:s'));
 
@@ -79,7 +76,26 @@ class ProjectController extends AbstractController
         $diffDate = $startDate->diff($endDate);
         $session->set("diff_date", $diffDate);
 
-        return $this->redirectToRoute("project");
+        /** @var PokerGame */
+        $game = $session->get("game", null);
+
+        $gameData = $game->getData();
+
+        /** @var array<array<Card|null>> */
+        $board = $gameData["board"];
+
+        /** @var int */
+        $totalPoints = $game->getTotalHandRankPoints();
+
+        $session->set("game", $game);
+
+        $data = [
+            "game" => $game,
+            "board" => $board,
+            "totalPoints" => $totalPoints,
+        ];
+
+        return $this->render("project/end.html.twig", $data);
     }
 
     #[Route("/proj/playing", name: "project_playing")]
@@ -95,10 +111,17 @@ class ProjectController extends AbstractController
         /** @var PokerGame */
         $game = $session->get("game", null);
 
+        if ($game->isCompleted()) {
+            return $this->redirectToRoute("project_end");
+        }
+
         $gameData = $game->getData();
 
         /** @var array<array<Card|null>> */
         $board = $gameData["board"];
+
+        /** @var int */
+        $totalPoints = $game->getTotalHandRankPoints();
 
         /** @var Card */
         $selectedCard = $gameData["selectedCard"];
@@ -107,6 +130,7 @@ class ProjectController extends AbstractController
             "game" => $game,
             "board" => $board,
             "selectedCard" => $selectedCard,
+            "totalPoints" => $totalPoints,
         ];
 
         return $this->render("project/playing.html.twig", $data);
@@ -141,6 +165,8 @@ class ProjectController extends AbstractController
 
         $game->popSelectedCard();
         $game->setBoardElement($row, $column, $selectedCard);
+
+        $session->set("game", $game);
 
         return $this->redirectToRoute("project_playing");
     }
