@@ -286,6 +286,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Controller-APIController.html#method_getCurrentPointForRow"
         },                {
+            "fqsen": "\\App\\Controller\\APIController\u003A\u003AinitPokerGame\u0028\u0029",
+            "name": "initPokerGame",
+            "summary": "",
+            "url": "classes/App-Controller-APIController.html#method_initPokerGame"
+        },                {
             "fqsen": "\\App\\Controller\\APIController\u003A\u003AgetCurrentPointForColumn\u0028\u0029",
             "name": "getCurrentPointForColumn",
             "summary": "",
@@ -938,77 +943,77 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Game\\PokerGame\u003A\u003ApopSelectedCard\u0028\u0029",
             "name": "popSelectedCard",
-            "summary": "",
+            "summary": "Pop\u0020and\u0020return\u0020the\u0020currently\u0020selected\u0020card\u0020from\u0020the\u0020deck.",
             "url": "classes/App-Game-PokerGame.html#method_popSelectedCard"
         },                {
             "fqsen": "\\App\\Game\\PokerGame\u003A\u003ApeekSelectedCard\u0028\u0029",
             "name": "peekSelectedCard",
-            "summary": "",
+            "summary": "Get\u0020the\u0020currently\u0020selected\u0020card.",
             "url": "classes/App-Game-PokerGame.html#method_peekSelectedCard"
         },                {
             "fqsen": "\\App\\Game\\PokerGame\u003A\u003AgetBoardElement\u0028\u0029",
             "name": "getBoardElement",
-            "summary": "",
+            "summary": "Get\u0020the\u0020card\u0020at\u0020the\u0020specified\u0020position\u0020on\u0020the\u0020board.",
             "url": "classes/App-Game-PokerGame.html#method_getBoardElement"
         },                {
             "fqsen": "\\App\\Game\\PokerGame\u003A\u003AsetBoardElement\u0028\u0029",
             "name": "setBoardElement",
-            "summary": "",
+            "summary": "Set\u0020the\u0020card\u0020at\u0020the\u0020specified\u0020position\u0020on\u0020the\u0020board.",
             "url": "classes/App-Game-PokerGame.html#method_setBoardElement"
         },                {
             "fqsen": "\\App\\Game\\PokerGame\u003A\u003AhasBoardElement\u0028\u0029",
             "name": "hasBoardElement",
-            "summary": "",
+            "summary": "Check\u0020if\u0020a\u0020card\u0020exists\u0020at\u0020the\u0020specified\u0020position\u0020on\u0020the\u0020board.",
             "url": "classes/App-Game-PokerGame.html#method_hasBoardElement"
         },                {
             "fqsen": "\\App\\Game\\PokerGame\u003A\u003AisCompleted\u0028\u0029",
             "name": "isCompleted",
-            "summary": "",
+            "summary": "Check\u0020if\u0020the\u0020game\u0020is\u0020completed.",
             "url": "classes/App-Game-PokerGame.html#method_isCompleted"
         },                {
             "fqsen": "\\App\\Game\\PokerGame\u003A\u003AgetRowHandRank\u0028\u0029",
             "name": "getRowHandRank",
-            "summary": "",
+            "summary": "Get\u0020the\u0020hand\u0020rank\u0020of\u0020a\u0020specific\u0020row\u0020on\u0020the\u0020board.",
             "url": "classes/App-Game-PokerGame.html#method_getRowHandRank"
         },                {
             "fqsen": "\\App\\Game\\PokerGame\u003A\u003AgetColumnHandRank\u0028\u0029",
             "name": "getColumnHandRank",
-            "summary": "",
+            "summary": "Get\u0020the\u0020hand\u0020rank\u0020of\u0020a\u0020specific\u0020column\u0020on\u0020the\u0020board.",
             "url": "classes/App-Game-PokerGame.html#method_getColumnHandRank"
         },                {
             "fqsen": "\\App\\Game\\PokerGame\u003A\u003AgetTotalHandRankPoints\u0028\u0029",
             "name": "getTotalHandRankPoints",
-            "summary": "",
+            "summary": "Get\u0020the\u0020total\u0020points\u0020from\u0020all\u0020the\u0020hand\u0020ranks\u0020on\u0020the\u0020board.",
             "url": "classes/App-Game-PokerGame.html#method_getTotalHandRankPoints"
         },                {
             "fqsen": "\\App\\Game\\PokerGame\u003A\u003AgetPointsFromHandRank\u0028\u0029",
             "name": "getPointsFromHandRank",
-            "summary": "",
+            "summary": "Get\u0020the\u0020points\u0020corresponding\u0020to\u0020a\u0020specific\u0020hand\u0020rank.",
             "url": "classes/App-Game-PokerGame.html#method_getPointsFromHandRank"
         },                {
             "fqsen": "\\App\\Game\\PokerGame\u003A\u003AgetRowAndColumnPoints\u0028\u0029",
             "name": "getRowAndColumnPoints",
-            "summary": "",
+            "summary": "Get\u0020the\u0020points\u0020from\u0020a\u0020specific\u0020position\u0020on\u0020the\u0020board\u0020\u0028row\u0020and\u0020column\u0029.",
             "url": "classes/App-Game-PokerGame.html#method_getRowAndColumnPoints"
         },                {
             "fqsen": "\\App\\Game\\PokerGame\u003A\u003AgetRowPoints\u0028\u0029",
             "name": "getRowPoints",
-            "summary": "",
+            "summary": "Get\u0020the\u0020total\u0020points\u0020from\u0020a\u0020specific\u0020row\u0020on\u0020the\u0020board.",
             "url": "classes/App-Game-PokerGame.html#method_getRowPoints"
         },                {
             "fqsen": "\\App\\Game\\PokerGame\u003A\u003AgetColumnPoints\u0028\u0029",
             "name": "getColumnPoints",
-            "summary": "",
+            "summary": "Get\u0020the\u0020total\u0020points\u0020from\u0020a\u0020specific\u0020column\u0020on\u0020the\u0020board.",
             "url": "classes/App-Game-PokerGame.html#method_getColumnPoints"
         },                {
             "fqsen": "\\App\\Game\\PokerGame\u003A\u003AgetTotalPoints\u0028\u0029",
             "name": "getTotalPoints",
-            "summary": "",
+            "summary": "Get\u0020the\u0020total\u0020points\u0020from\u0020all\u0020the\u0020cards\u0020on\u0020the\u0020board.",
             "url": "classes/App-Game-PokerGame.html#method_getTotalPoints"
         },                {
             "fqsen": "\\App\\Game\\PokerGame\u003A\u003AgetData\u0028\u0029",
             "name": "getData",
-            "summary": "",
+            "summary": "Get\u0020the\u0020data\u0020of\u0020the\u0020PokerGame\u0020object.",
             "url": "classes/App-Game-PokerGame.html#method_getData"
         },                {
             "fqsen": "\\App\\Game\\PokerGame\u003A\u003A\u0024deck",
@@ -1023,7 +1028,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Game\\PokerGame\u003A\u003A\u0024board",
             "name": "board",
-            "summary": "",
+            "summary": "The\u0020game\u0020board\u0020containing\u0020the\u0020cards.",
             "url": "classes/App-Game-PokerGame.html#property_board"
         },                {
             "fqsen": "\\App\\Poker\\PokerRank",

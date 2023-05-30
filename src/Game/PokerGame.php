@@ -14,10 +14,14 @@ use App\Poker\PokerRank;
 
 class PokerGame
 {
-    private DeckOfCards $deck;
-    private Card $selectedCard;
+    private DeckOfCards $deck; // The deck of cards used in the game.
+    private Card $selectedCard; // The currently selected card.
 
-    /** @var array<array<Card|null>> */
+    /**
+     * The game board containing the cards.
+     *
+     * @var array<array<Card|null>>
+     */
     private array $board;
 
     public function __construct()
@@ -40,6 +44,11 @@ class PokerGame
         $this->selectedCard = $card;
     }
 
+   /**
+     * Pop and return the currently selected card from the deck.
+     *
+     * @return Card The previously selected card.
+     */
     public function popSelectedCard(): Card
     {
         $temp = $this->selectedCard;
@@ -52,26 +61,58 @@ class PokerGame
         return $temp;
     }
 
+    /**
+     * Get the currently selected card.
+     *
+     * @return Card The currently selected card.
+     */
     public function peekSelectedCard(): Card
     {
         return $this->selectedCard;
     }
 
+    /**
+     * Get the card at the specified position on the board.
+     *
+     * @param int $row The row index.
+     * @param int $column The column index.
+     * @return Card|null The card at the specified position, or null if empty.
+     */
     public function getBoardElement(int $row, int $column): Card|null
     {
         return $this->board[$row][$column];
     }
 
+    /**
+     * Set the card at the specified position on the board.
+     *
+     * @param int $row The row index.
+     * @param int $column The column index.
+     * @param Card|null $card The card to be set, or null to clear the position.
+     * @return void
+     */
     public function setBoardElement(int $row, int $column, Card|null $card): void
     {
         $this->board[$row][$column] = $card;
     }
 
+    /**
+     * Check if a card exists at the specified position on the board.
+     *
+     * @param int $row The row index.
+     * @param int $column The column index.
+     * @return bool True if a card exists, false otherwise.
+     */
     public function hasBoardElement(int $row, int $column): bool
     {
         return !is_null($this->getBoardElement($row, $column));
     }
 
+    /**
+     * Check if the game is completed.
+     *
+     * @return bool True if the game is completed, false otherwise.
+     */
     public function isCompleted(): bool
     {
         $rows = count($this->board);
@@ -88,6 +129,12 @@ class PokerGame
         return true;
     }
 
+    /**
+     * Get the hand rank of a specific row on the board.
+     *
+     * @param int $row The row index.
+     * @return string The hand rank of the cards in the specified row.
+     */
     public function getRowHandRank(int $row): string
     {
         $hand = new CardHand();
@@ -106,6 +153,12 @@ class PokerGame
         return PokerRanker::getHandRank($hand);
     }
 
+    /**
+     * Get the hand rank of a specific column on the board.
+     *
+     * @param int $column The column index.
+     * @return string The hand rank of the cards in the specified column.
+     */
     public function getColumnHandRank(int $column): string
     {
         $hand = new CardHand();
@@ -124,6 +177,11 @@ class PokerGame
         return PokerRanker::getHandRank($hand);
     }
 
+    /**
+     * Get the total points from all the hand ranks on the board.
+     *
+     * @return int The total points calculated from the hand ranks.
+     */
     public function getTotalHandRankPoints(): int
     {
         $totalPoints = 0;
@@ -147,6 +205,12 @@ class PokerGame
         return $totalPoints;
     }
 
+    /**
+     * Get the points corresponding to a specific hand rank.
+     *
+     * @param string $handRank The hand rank.
+     * @return int The points corresponding to the hand rank.
+     */
     public function getPointsFromHandRank(string $handRank): int
     {
         switch ($handRank) {
@@ -183,6 +247,13 @@ class PokerGame
         }
     }
 
+    /**
+     * Get the points from a specific position on the board (row and column).
+     *
+     * @param int $row The row index.
+     * @param int $column The column index.
+     * @return mixed The points from the specified position, or 0 if the position is empty.
+     */
     public function getRowAndColumnPoints(int $row, int $column): mixed
     {
         if ($this->hasBoardElement($row, $column)) {
@@ -195,6 +266,12 @@ class PokerGame
         return 0;
     }
 
+    /**
+     * Get the total points from a specific row on the board.
+     *
+     * @param int $row The row index.
+     * @return int The total points from the specified row.
+     */
     public function getRowPoints(int $row): int
     {
         $points = 0;
@@ -208,6 +285,12 @@ class PokerGame
         return $points;
     }
 
+    /**
+     * Get the total points from a specific column on the board.
+     *
+     * @param int $column The column index.
+     * @return int The total points from the specified column.
+     */
     public function getColumnPoints(int $column): int
     {
         $points = 0;
@@ -223,6 +306,11 @@ class PokerGame
         return $points;
     }
 
+   /**
+     * Get the total points from all the cards on the board.
+     *
+     * @return int The total points from all the cards.
+     */
     public function getTotalPoints(): int
     {
         $points = 0;
@@ -239,7 +327,9 @@ class PokerGame
     }
 
     /**
-     * @return Mixed[]
+     * Get the data of the PokerGame object.
+     *
+     * @return Mixed[] An array containing the board and the selected card.
      */
     public function getData(): array
     {

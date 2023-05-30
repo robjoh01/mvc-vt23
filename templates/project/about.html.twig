@@ -9,7 +9,29 @@ Projektet “Poker Square” är en implementation av pokerspelet i PHP med hjä
 
 Du kan läsa mer om “<a href="https://en.wikipedia.org/wiki/Poker_squares" target="_blank">Poker Square</a>”.
 
-I detta projekt finns det olika komponenter och funktioner för att hantera kort, kortlekar och spellogik. Det finns en <code>DeckOfCards</code>-klass för att hantera en kortlek, en <code>PokerHand</code>-klass för att hantera en spelares hand och en <code>PokerGame</code>-klass för att hantera själva spelet. <code>PokerGame</code>-klassen innehåller metoder för att placera ut kort på spelplanen, kontrollera vinnande händer och beräkna poäng baserat på de vinnande kombinationerna.
+I detta projekt finns det olika komponenter och funktioner för att hantera kort, kortlekar och spellogik. Det finns en <code>DeckOfCards</code>-klass för att hantera en kortlek, och en <code>PokerGame</code>-klass för att hantera själva spelet. <code>PokerGame</code>-klassen innehåller metoder för att placera ut kort på spelplanen, kontrollera vinnande händer och beräkna poäng baserat på de vinnande kombinationerna.
+
+För att hantera kort och kortlekar använder projektet också klasserna <code>Card</code> och <code>CardHand</code>. Klassen <code>Card</code> representerar ett enskilt kort med en suit och en rank, medan <code>CardHand</code> används för att hålla en samling av kort i en spelares hand.
+
+I <code>PokerGame</code>-klassen finns metoder som <code>popSelectedCard()</code> och <code>peekSelectedCard()</code> för att hantera det valda kortet i spelet. <code>popSelectedCard()</code> returnerar det valda kortet och byter ut det mot ett nytt kort från kortleken, medan <code>peekSelectedCard()</code> returnerar det valda kortet utan att byta det.
+
+Spelplanen i <code>PokerGame</code>-klassen representeras av en matris av kort, som lagras i egenskapen <code>$board</code>. Metoderna <code>getBoardElement()</code> och <code>setBoardElement()</code> används för att få och sätta ett kort på en specifik position på spelplanen. Metoden <code>hasBoardElement()</code> kontrollerar om det finns ett kort på en viss position.
+
+För att kontrollera om spelet är slutfört används metoden <code>isCompleted</code>, som loopar igenom spelplanen och kontrollerar om det finns några tomma positioner kvar.
+
+Metoderna <code>getRowHandRank()</code> och <code>getColumnHandRank()</code> används för att beräkna ranken på handen i en rad eller kolumn på spelplanen med hjälp av <code>PokerRanker</code>-klassen. Metoden <code>getTotalHandRankPoints()</code> beräknar de totala poängen baserat på ranken på alla rader och kolumner.
+
+För att omvandla ranken på en hand till poäng används metoden <code>getPointsFromHandRank()</code>. Den här metoden använder en switch-sats för att tilldela poäng baserat på ranken.
+
+För att beräkna poängen för en specifik position på spelplanen används metoden <code>getRowAndColumnPoints()</code>. Den här metoden returnerar poängen för ett kort på en given rad och kolumn.
+
+För att beräkna poängen för en hel rad används metoden <code>getRowPoints()</code>, som summerar poängen för alla kort i raden.
+
+På samma sätt används metoden <code>getColumnPoints()</code> för att beräkna poängen för en hel kolumn genom att summera poängen för alla kort i kolumnen.
+
+Metoden <code>getTotalPoints()</code> beräknar de totala poängen för hela spelplanen genom att summera poängen för alla kort.
+
+Slutligen finns metoden <code>getData()</code>, som returnerar en associerad array med speldata. Arrayen innehåller spelplanen och det valda kortet.
 </pre>
 </main>
 {% endblock %}

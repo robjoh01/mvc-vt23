@@ -296,6 +296,12 @@ class APIController extends AbstractController
     public function getCurrentStatusOfProjectGame(
         SessionInterface $session
     ): Response {
+        $hasInitialize = $session->get("has_initialize", false);
+
+        if (!$hasInitialize) {
+            $this->initPokerGame($session);
+        }
+
         /** @var PokerGame */
         $game = $session->get("game", null);
 
@@ -358,6 +364,12 @@ class APIController extends AbstractController
     public function getCurrentStatusOfProjectGamePoints(
         SessionInterface $session
     ): Response {
+        $hasInitialize = $session->get("has_initialize", false);
+
+        if (!$hasInitialize) {
+            $this->initPokerGame($session);
+        }
+
         /** @var PokerGame */
         $game = $session->get("game", null);
 
@@ -417,6 +429,12 @@ class APIController extends AbstractController
         SessionInterface $session,
         int $row,
     ): Response {
+        $hasInitialize = $session->get("has_initialize", false);
+
+        if (!$hasInitialize) {
+            $this->initPokerGame($session);
+        }
+
         /** @var PokerGame */
         $game = $session->get("game", null);
 
@@ -439,11 +457,26 @@ class APIController extends AbstractController
         return $response;
     }
 
+    private function initPokerGame(
+        SessionInterface $session
+    ): void {
+        $game = new PokerGame();
+
+        $session->set("game", $game);
+        $session->set("has_initialize", true);
+    }
+
     #[Route('/api/project/game/columns/{column}', name: 'api_project_game_column')]
     public function getCurrentPointForColumn(
         SessionInterface $session,
         int $column,
     ): Response {
+        $hasInitialize = $session->get("has_initialize", false);
+
+        if (!$hasInitialize) {
+            $this->initPokerGame($session);
+        }
+
         /** @var PokerGame */
         $game = $session->get("game", null);
 
@@ -471,8 +504,8 @@ class APIController extends AbstractController
         Request $request,
         SessionInterface $session
     ): Response {
-        $row = $request->request->get('row_index');
-        $column = $request->request->get('column_index');
+        $row = (int)$request->request->get('row_index');
+        $column = (int)$request->request->get('column_index');
 
         if ($row < 0 || $row > 5) {
             throw new Exception("Row cannot be above 5 or below 0!");
@@ -480,6 +513,12 @@ class APIController extends AbstractController
 
         if ($column < 0 || $column > 5) {
             throw new Exception("Column cannot be above 5 or below 0!");
+        }
+
+        $hasInitialize = $session->get("has_initialize", false);
+
+        if (!$hasInitialize) {
+            $this->initPokerGame($session);
         }
 
         /** @var PokerGame */
@@ -512,13 +551,17 @@ class APIController extends AbstractController
             ]
         ];
 
+        // Compute the size of the board
+        $rowsCount = count($board);
+        $columnsCount = count($board[0]);
+
         // Iterate over each row in the board
-        for ($row = 0; $row < count($board); $row++) {
+        for ($row = 0; $row < $rowsCount; $row++) {
             $rowKey = "row" . sprintf("%02d", $row + 1);
             $data["board"]["rows"][$rowKey] = [];
 
             // Iterate over each column in the row
-            for ($column = 0; $column < count($board[$row]); $column++) {
+            for ($column = 0; $column < $columnsCount; $column++) {
                 $columnKey = "column" . sprintf("%02d", $column + 1);
                 $card = $board[$row][$column];
                 $value = is_null($card) ? null : $card->getAsString();
